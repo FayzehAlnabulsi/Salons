@@ -37,7 +37,7 @@ class AppText extends StatelessWidget {
       style: TextStyle(
           color: color,
           overflow: overflow ?? TextOverflow.clip,
-          fontFamily: fontFamily ?? GoogleFonts.tajawal().fontFamily,
+          fontFamily: fontFamily ?? GoogleFonts.playfairDisplay().fontFamily,
           fontSize: fontSize,
           fontWeight: fontWeight,
           decoration: textDecoration,

@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                       );
                     };
                     return Directionality(
-                        textDirection: TextDirection.rtl, child: widget!);
+                        textDirection: TextDirection.ltr, child: widget!);
                   },
                 )));
   }

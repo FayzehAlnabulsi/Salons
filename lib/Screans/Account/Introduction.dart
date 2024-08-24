@@ -179,7 +179,6 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                             fontSize: AppSize.labelSize,
                             color: AppColor.textColor,
                             align: TextAlign.center,
-                            fontWeight: FontWeight.bold,
                             fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                           ),
                         ),
