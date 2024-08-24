@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'BackEnd/provider_class.dart';
+import 'Screans/Account/Introduction.dart';
 import 'Screans/Account/logIn.dart';
 import 'Widget/AppColor.dart';
 import 'Widget/AppSize.dart';
@@ -42,10 +43,10 @@ class MyApp extends StatelessWidget {
                   // routes: <String, WidgetBuilder>{
                   //   Login.route: (_) => Login(),
                   // },
-                  home: Login(),
+                  home: const IntroductionScreen(),
                   title: 'لوحة التحكم',
                   theme: ThemeData(
-                      scaffoldBackgroundColor: AppColor.white,
+                      scaffoldBackgroundColor: AppColor.backGroundColor,
                       useMaterial3: true,
                       fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                       cardTheme: CardTheme(

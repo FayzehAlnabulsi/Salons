@@ -137,7 +137,7 @@ class AppMessage {
   static String phone = 'رقم الجوال';
   static String gender = 'الجنس';
   static String catogary = 'التصنيف';
-  static String logIn = 'تسجيل الدخول';
+  static String logIn = 'logIn';
   static String userName = 'اسم المستخدم';
   static String password = 'كلمة المرور';
 
