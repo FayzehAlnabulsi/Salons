@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +43,7 @@ class _LoginState extends State<Login> {
                   Container(
                     height: GeneralWidget.height(context) / 2,
                     width: GeneralWidget.width(context) / 2,
-                    color: AppColor.lightSubColor,
+                    color: AppColor.mainColor,
                   ),
                   Container(
                     height: GeneralWidget.height(context) / 2,
@@ -53,19 +55,45 @@ class _LoginState extends State<Login> {
             ),
             Column(
               children: [
-                Container(
-                  height: GeneralWidget.height(context) / 2,
-                  width: GeneralWidget.width(context),
-                  decoration: BoxDecoration(
-                      color: AppColor.lightSubColor,
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(50.r))),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/smallLogo.png',
-                      opacity: const AlwaysStoppedAnimation(.6),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: GeneralWidget.height(context) / 2,
+                      width: GeneralWidget.width(context),
+                      decoration: BoxDecoration(
+                          color: AppColor.mainColor,
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(50.r))),
+                      child: UnconstrainedBox(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+                          child: Container(
+                            margin: EdgeInsets.only(top: 30.h),
+                            height: 180.h,
+                            width: 300.w,
+                            decoration: BoxDecoration(
+                                color: AppColor.lightSubColor.withOpacity(0.05),
+                                boxShadow: [BoxShadow(color: AppColor.beige,blurRadius: 150.r)],
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(150.r),
+                                    topRight: Radius.circular(100.r),
+                                    bottomRight: Radius.circular(125.r),
+                                    bottomLeft: Radius.circular(100.r))),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 30.h),
+                      child: Image.asset(
+                        'assets/images/smallLogo.png',
+                        height: 200.h,
+                        width: 300.w,
+                        // opacity: const AlwaysStoppedAnimation(.6),
+                      ),
+                    )
+                  ],
                 ),
                 Container(
                   height: GeneralWidget.height(context) / 2,
@@ -80,10 +108,13 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(
-                          text: 'Login to your account',
-                          fontSize: AppSize.labelSize,
-                          color: AppColor.textColor.withOpacity(0.7),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5.r),
+                          child: AppText(
+                            text: 'Login to your account',
+                            fontSize: AppSize.subTitle,
+                            color: AppColor.textColor.withOpacity(0.7),
+                          ),
                         ),
                         SizedBox(
                           height: 20.h,
@@ -96,7 +127,7 @@ class _LoginState extends State<Login> {
                           borderColor: AppColor.subColor.withOpacity(0.6),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.r),
+                          padding: EdgeInsets.only(top: 10.h),
                           child: AppTextFields(
                             validator: (v) => AppValidator.validatorEmpty(v),
                             controller: TextEditingController(),
@@ -105,13 +136,42 @@ class _LoginState extends State<Login> {
                             borderColor: AppColor.subColor.withOpacity(0.6),
                           ),
                         ),
-                        GeneralWidget.checkBoxTile(value: false, onChange: (v){},title: AppText(text: 'remember me', fontSize: AppSize.labelSize)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                                child: Transform.translate(
+                              offset: Offset(-8.w, -8.h),
+                              child: GeneralWidget.checkBoxTile(
+                                  value: false,
+                                  onChange: (v) {},
+                                  title: Transform.translate(
+                                    offset: Offset(-18.w, 0),
+                                    child: AppText(
+                                        text: 'remember me',
+                                        color:
+                                            AppColor.textColor.withOpacity(0.7),
+                                        fontSize: AppSize.textFieldsHintSize),
+                                  ),
+                                  contentPadding: EdgeInsets.zero),
+                            )),
+                            Flexible(
+                                child: Transform.translate(
+                              offset: Offset(-8.w, -8.h),
+                              child: AppText(
+                                  text: 'forgot password?',
+                                  color: AppColor.textColor.withOpacity(0.7),
+                                  fontSize: AppSize.textFieldsHintSize),
+                            )),
+                          ],
+                        ),
                         SizedBox(
                           height: 20.h,
                         ),
                         AppButtons(
                           onPressed: () {},
                           text: 'Login',
+                          fontWeight: FontWeight.bold,
                           backgroundColor: AppColor.mainColor,
                         ),
                         SizedBox(height: 30.h),
@@ -120,7 +180,7 @@ class _LoginState extends State<Login> {
                           TextSpan(
                               text: 'you dont have account?',
                               style: TextStyle(
-                                  color: AppColor.textColor,
+                                  color: AppColor.textColor.withOpacity(0.5),
                                   fontSize: AppSize.smallTextSize)),
                           TextSpan(
                               text: '  Sign Up',

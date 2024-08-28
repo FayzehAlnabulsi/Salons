@@ -48,7 +48,9 @@ class GeneralWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppSize.textFieldsBorderRadius),
       borderSide: BorderSide(
-        color: isFocus == true ? AppColor.subColor : AppColor.grey.withOpacity(0.6),
+        color: isFocus == true
+            ? AppColor.subColor
+            : AppColor.grey.withOpacity(0.6),
         width: AppSize.textFieldsBorderWidth,
       ),
     );
@@ -145,18 +147,19 @@ class GeneralWidget {
       {required bool? value,
       required void Function(bool?)? onChange,
       Widget? title,
-      bool? dense}) {
-    return CheckboxListTile(
-        dense: dense,
-        controlAffinity: ListTileControlAffinity.leading,
-        contentPadding: EdgeInsets.all(0.r),
-        value: value,
-        title: title,
-        activeColor: AppColor.mainColor,
-        checkboxShape: RoundedRectangleBorder(
-            side: BorderSide(color: AppColor.subColor, width: 0.5),
-            borderRadius: BorderRadius.circular(3.r)),
-        onChanged: onChange);
+      bool? dense,
+      EdgeInsetsGeometry? contentPadding}) {
+    return Theme(
+      data: ThemeData.dark(),
+      child: CheckboxListTile(
+          dense: dense,
+          controlAffinity: ListTileControlAffinity.leading,
+          contentPadding: contentPadding??EdgeInsets.all(0.r),
+          value: value,
+          title: title,
+          activeColor: AppColor.mainColor,
+          onChanged: onChange),
+    );
   }
 
   //=========================text span ========================
@@ -684,8 +687,7 @@ class GeneralWidget {
                     decoration: decoration(
                         radius: 3.r,
                         shadow: false,
-                        color: trailingColor ??
-                            AppColor.secondaryColor,
+                        color: trailingColor ?? AppColor.secondaryColor,
                         radiusOnlyTopLeftButtomLeft: true),
                     width: double.maxFinite,
                     height: double.maxFinite,
