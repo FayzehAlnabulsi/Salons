@@ -144,22 +144,35 @@ class GeneralWidget {
   //======================checkBox tile ===========================
 
   static Widget checkBoxTile(
-      {required bool? value,
-      required void Function(bool?)? onChange,
+      {required bool value,
       Widget? title,
       bool? dense,
       EdgeInsetsGeometry? contentPadding}) {
-    return Theme(
-      data: ThemeData.dark(),
-      child: CheckboxListTile(
-          dense: dense,
-          controlAffinity: ListTileControlAffinity.leading,
-          contentPadding: contentPadding??EdgeInsets.all(0.r),
-          value: value,
-          title: title,
-          activeColor: AppColor.mainColor,
-          onChanged: onChange),
-    );
+    return Row(children: [
+      Container(
+        height: 18.spMin,
+        width: 18.spMin,
+        decoration: BoxDecoration(
+            color: value ? AppColor.havanaPink : AppColor.backGroundColor,
+            borderRadius: BorderRadius.all(Radius.circular(3.r)),
+            border: Border.all(
+                color: value
+                    ? AppColor.textColor.withOpacity(0.2)
+                    : AppColor.textColor.withOpacity(0.7),
+                width: 0.5.spMin)),
+        child: value
+            ? Icon(
+                AppIcons.success,
+                color: AppColor.white,
+                size: AppSize.smallIconSize,
+              )
+            : const SizedBox(),
+      ),
+      SizedBox(
+        width: 5.w,
+      ),
+      title ?? const SizedBox()
+    ]);
   }
 
   //=========================text span ========================
@@ -452,7 +465,7 @@ class GeneralWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           AppSvg(
-            path: AppPath.empty,
+            path: 'AppPath.empty',
             height: 200.h,
           ),
           SizedBox(

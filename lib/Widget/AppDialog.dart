@@ -25,7 +25,7 @@ class AppDialog {
             backgroundColor: Colors.transparent,
             content: Container(
               alignment: AlignmentDirectional.center,
-              child: Lottie.asset(AppPath.lode2),
+              child: Lottie.asset(AppPath.loading),
             ),
           );
         });

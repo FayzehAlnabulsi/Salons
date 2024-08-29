@@ -26,7 +26,7 @@ class HandleException extends StatefulWidget {
     } else if (message == AppMessage.formatException) {
       return AppMessage.formatText;
     } else if (message == AppMessage.unAuthorized) {
-      return AppMessage.unAuthorizedText;
+      return AppMessage.unAuthorizedMessage;
     }
     return message;
   }
@@ -50,7 +50,7 @@ class HandleException extends StatefulWidget {
                     height: 70.h,
                     child: AspectRatio(
                       aspectRatio: 10 / 2,
-                      child: SvgPicture.asset(AppPath.apiError),
+                      child: SvgPicture.asset('AppPath.apiError'),
                     ),
                   ),
                   Flexible(
@@ -93,7 +93,7 @@ class _HandleExceptionState extends State<HandleException> {
             children: [
               AspectRatio(
                 aspectRatio: 3 / 2,
-                child: SvgPicture.asset(AppPath.apiError),
+                child: SvgPicture.asset('AppPath.apiError'),
               ),
               SizedBox(
                 height: 20.h,

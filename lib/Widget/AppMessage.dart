@@ -7,18 +7,25 @@ class AppMessage {
   static String socketException = 'socketException';
   static String timeoutException = 'timeoutException';
   static String formatException = 'formatException';
-  static String unAuthorizedText =
-      'انتهت صلاحية الجلسة'; //"نحن آسفون ولكننا غير قادرين على التحقق من هويتك. يجب عليك تسجيل الدخول";
-  static String tryAgain = 'إعادة المحاولة';
-  static String serverText = "حدث خطأ ما اثناء معالجة طلبك";
-  static String socketText = 'لايوجد اتصال بالانترنت';
+
+  static String unAuthorizedMessage = 'login period ended';
+  static String unAuthorizedMessageAr = 'انتهت صلاحية الجلسة';
+  static String tryAgain = 'try again';
+  static String tryAgainAr = 'اعادة المحاولة';
+  static String serverText = "something went wrong please try again later";
+  static String serverTextAr = "حدث خطأ ما الرجاء المحاولة لاحقا";
+  static String socketText = 'no internet connection';
+  static String socketTextAr = 'لا يوجد اتصال بالإنترنت';
   static String timeoutText =
-      'يبدو أن الخادم يستغرق وقتًا طويلاً للاستجابة، حاول مجدداً بعد فترة';
-  static String formatText = 'حدث خطا ما';
+      'oops, it looks like its taking so much time to get data';
+  static String timeoutTextAr = 'لقد انتهى الوقت المحدد لجلب البيانات';
+  static String formatText = serverText;
+  static String formatTextAr = serverTextAr;
   static String initial = 'initial';
   static String loading = 'loading';
   static String loaded = 'loaded';
-  static String noData = 'لاتوجد بيانات لعرضها';
+  static String noData = 'no data to show';
+  static String noDataAr = 'لا يوجد بيانات لعرضها';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -34,6 +41,26 @@ class AppMessage {
         'Authorization': 'Bearer $token'
       };
 //====================================================================
+
+  static String salons = 'salons';
+  static String salonsAr = 'صالونات';
+  static String logInAccount = 'Login to your account';
+  static String logInAccountAr = 'تسجيل الدخول';
+  static String userName = 'userName';
+  static String userNameAr = 'اسم المستخدم';
+  static String password = 'password';
+  static String passwordAr = 'كلمة المرور';
+  static String rememberMe = 'remember me';
+  static String rememberMeAr = 'تذكرني';
+  static String forgotPassword = 'forgot password?';
+  static String forgotPasswordAr = 'نسيت كلمة المرور؟';
+  static String logIn = 'Login';
+  static String logInAr = 'تسجيل الدخول';
+  static String doNotHaveAccount = 'you dont have account?';
+  static String doNotHaveAccountAr = 'ليس لديك حساب؟';
+  static String signUp = '  Sign Up';
+  static String signUpAr = 'انشئ حساب  ';
+
 
   static String rule = 'مستخدميين النظام';
   static String paymentGetaway = 'بوابات الدفع';
@@ -69,7 +96,7 @@ class AppMessage {
   static String celebrityManagementText = 'ادارة المشاهير';
   static String mandatoryTx = 'حقل اجباري';
   static String invalidPassword =
-      'يجب أن يكون طول نص كلمة المرور على الأقل 8 حروفٍ/حرفًا'; //'كلمة المرور يجب ان لا تقل عن 8 خانات';
+  'يجب أن يكون طول نص كلمة المرور على الأقل 8 حروفٍ/حرفًا'; //'كلمة المرور يجب ان لا تقل عن 8 خانات';
   static String noMatch = 'كلمة المرور و تأكيد كلمة المرور لا تتطابق';
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
@@ -81,13 +108,13 @@ class AppMessage {
   static String description = 'الوصف';
   static String shouldNotStartWithNumber = 'يجب ان لا يبدا الكوبون برقم';
   static String englishOnlyCoupon =
-      'يجب ان يكون اسم الكوبون حروف وارقام انجليزية';
+  'يجب ان يكون اسم الكوبون حروف وارقام انجليزية';
   static String noLessThan4 = "الحد الادنى 4 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String arabicOnlyValidation = 'يجب ان يكون الاسم حروف باللغة العربية ';
   static String pleaseEnterFullName = 'الرجاء كتابة الاسم الثلاثي الكامل';
   static String englishOnlyValidation =
-      'يجب ان يكون اسم المستخدم باللغة الانجليزية';
+  'يجب ان يكون اسم المستخدم باللغة الانجليزية';
   static String notZero = 'يجب ان يكون اكبر من صفر';
   static String confirmDelete = 'هل انت متاكد من اكمال عملية الحذف؟';
   static String yes = 'نعم';
@@ -137,9 +164,6 @@ class AppMessage {
   static String phone = 'رقم الجوال';
   static String gender = 'الجنس';
   static String catogary = 'التصنيف';
-  static String logIn = 'logIn';
-  static String userName = 'اسم المستخدم';
-  static String password = 'كلمة المرور';
 
   static String dateEmpty = 'الرجاء اختيار التاريخ';
   static String couponName = 'اسم الكوبون';
@@ -152,11 +176,11 @@ class AppMessage {
   static String specificCelebrity = 'مشهور محدد';
   static String couponTo = 'الكوبون يشمل';
   static String searchByCelebrityData =
-      'ابحث باسم الشهرة او الاسم الرباعي او اسم المستخدم';
+  'ابحث باسم الشهرة او الاسم الرباعي او اسم المستخدم';
   static String searchByUserData =
-      'ابحث بالاسم او الاسم الرباعي او اسم المستخدم';
+  'ابحث بالاسم او الاسم الرباعي او اسم المستخدم';
   static String searchBySupportData =
-      'ابحث بالاسم او موضوع الرسالة او تفاصيل الرسالة';
+  'ابحث بالاسم او موضوع الرسالة او تفاصيل الرسالة';
   static String notLess = 'لا يمكنك تقليل عدد المستفيدين';
   static String searchCelebrity = 'ابحث عن مشهور';
   static String randomErrorMessage = 'حدث خطآ ما حاول لاحقا';
@@ -197,7 +221,7 @@ class AppMessage {
   static String note = 'الملاحظة';
   static String warnContent = 'محتوى الانذار';
   static String celebrityBannedSuccessfully =
-      'تم حظر المشهور و اغلاق البث بنجاح';
+  'تم حظر المشهور و اغلاق البث بنجاح';
   static String searchByCelebrity = 'ابحث باسم المشهور';
   static String searchByCelebrityOrUser = 'ابحث باسم المشهور او المستخدم';
   static String orderNumber = 'رقم الطلب';
@@ -251,7 +275,7 @@ class AppMessage {
   static String idFile = 'ملف الرخصة الاعلامية';
   static String update = 'تعديل البيانات';
   static const String emailAndUsernameTaken =
-      'البريد الالكتروني واسم المستخدم موجود مسبقا';
+  'البريد الالكتروني واسم المستخدم موجود مسبقا';
   static const String usernameTaken = 'اسم المستخدم موجود مسبقا';
   static const String emailTaken = 'البريد الالكتروني موجود مسبقا';
   static const String invalidEmailFormat = 'صيغة البريد الالكتروني غير صحيحة';
@@ -307,9 +331,9 @@ class AppMessage {
   static const String activeOrderType = 'الانواع الاكثر طلب';
   static const String quickAuthTiltle = 'تسجيل الدخول السريع';
   static String quickAuthContent =
-      "هل تريد تفعيل تسجيل الدخول السريع ${Platform.isAndroid ? 'باستخدام البصمة' : Platform.isIOS ? 'باستخدام بصمة الوجه' : ''}";
+  "هل تريد تفعيل تسجيل الدخول السريع ${Platform.isAndroid ? 'باستخدام البصمة' : Platform.isIOS ? 'باستخدام بصمة الوجه' : ''}";
   static String other = "اخرى";
   static String currentPassword = 'كلمة المرور الحالية';
   static String accountInfo = 'معلومات الحساب';
-//
+
 }

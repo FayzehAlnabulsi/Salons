@@ -21,6 +21,7 @@ class AppSize {
   static double smallButtonsText = 13.spMin;
   static double errorSize = 10.spMin;
   static double iconsSize = 18.spMin;
+  static double smallIconSize = 10.spMin;
   static double appBarIconsSize = 20.spMin;
   static double largeIconSize = 40.spMin;
 }

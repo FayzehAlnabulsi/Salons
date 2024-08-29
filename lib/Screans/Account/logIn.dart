@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
+import 'package:salons/Widget/AppMessage.dart';
+import 'package:salons/Widget/AppPath.dart';
 import 'package:salons/Widget/AppSize.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:salons/Widget/AppTextFields.dart';
@@ -21,6 +21,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool rememberMe = false;
+
   @override
   void initState() {
     super.initState();
@@ -36,22 +38,20 @@ class _LoginState extends State<Login> {
         width: GeneralWidget.width(context),
         child: Stack(
           children: [
-            Flexible(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    height: GeneralWidget.height(context) / 2,
-                    width: GeneralWidget.width(context) / 2,
-                    color: AppColor.mainColor,
-                  ),
-                  Container(
-                    height: GeneralWidget.height(context) / 2,
-                    width: GeneralWidget.width(context) / 2,
-                    color: AppColor.backGroundColor.withOpacity(0.6),
-                  ),
-                ],
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  height: GeneralWidget.height(context) / 2,
+                  width: GeneralWidget.width(context) / 2,
+                  color: AppColor.mainColor,
+                ),
+                Container(
+                  height: GeneralWidget.height(context) / 2,
+                  width: GeneralWidget.width(context) / 2,
+                  color: AppColor.backGroundColor.withOpacity(0.6),
+                ),
+              ],
             ),
             Column(
               children: [
@@ -74,7 +74,10 @@ class _LoginState extends State<Login> {
                             width: 300.w,
                             decoration: BoxDecoration(
                                 color: AppColor.lightSubColor.withOpacity(0.05),
-                                boxShadow: [BoxShadow(color: AppColor.beige,blurRadius: 150.r)],
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColor.beige, blurRadius: 150.r)
+                                ],
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(150.r),
                                     topRight: Radius.circular(100.r),
@@ -87,10 +90,9 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: EdgeInsets.only(top: 30.h),
                       child: Image.asset(
-                        'assets/images/smallLogo.png',
+                        AppPath.smallLogo,
                         height: 200.h,
                         width: 300.w,
-                        // opacity: const AlwaysStoppedAnimation(.6),
                       ),
                     )
                   ],
@@ -111,7 +113,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: EdgeInsets.only(left: 5.r),
                           child: AppText(
-                            text: 'Login to your account',
+                            text: AppMessage.logInAccount,
                             fontSize: AppSize.subTitle,
                             color: AppColor.textColor.withOpacity(0.7),
                           ),
@@ -122,7 +124,7 @@ class _LoginState extends State<Login> {
                         AppTextFields(
                           validator: (v) => AppValidator.validatorUserName(v),
                           controller: TextEditingController(),
-                          hintText: 'userName',
+                          hintText: AppMessage.userName,
                           fillColor: AppColor.backGroundColor,
                           borderColor: AppColor.subColor.withOpacity(0.6),
                         ),
@@ -131,46 +133,47 @@ class _LoginState extends State<Login> {
                           child: AppTextFields(
                             validator: (v) => AppValidator.validatorEmpty(v),
                             controller: TextEditingController(),
-                            hintText: 'password',
+                            hintText: AppMessage.password,
                             fillColor: AppColor.backGroundColor,
                             borderColor: AppColor.subColor.withOpacity(0.6),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                                child: Transform.translate(
-                              offset: Offset(-8.w, -8.h),
-                              child: GeneralWidget.checkBoxTile(
-                                  value: false,
-                                  onChange: (v) {},
-                                  title: Transform.translate(
-                                    offset: Offset(-18.w, 0),
-                                    child: AppText(
-                                        text: 'remember me',
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.h, left: 5.spMin),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                  child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    rememberMe = !rememberMe;
+                                  });
+                                },
+                                child: GeneralWidget.checkBoxTile(
+                                    value: rememberMe,
+                                    title: AppText(
+                                        text: AppMessage.rememberMe,
                                         color:
                                             AppColor.textColor.withOpacity(0.7),
-                                        fontSize: AppSize.textFieldsHintSize),
-                                  ),
-                                  contentPadding: EdgeInsets.zero),
-                            )),
-                            Flexible(
-                                child: Transform.translate(
-                              offset: Offset(-8.w, -8.h),
-                              child: AppText(
-                                  text: 'forgot password?',
-                                  color: AppColor.textColor.withOpacity(0.7),
-                                  fontSize: AppSize.textFieldsHintSize),
-                            )),
-                          ],
+                                        fontSize: AppSize.smallTextSize),
+                                    contentPadding: EdgeInsets.zero),
+                              )),
+                              Flexible(
+                                  child: AppText(
+                                      text: AppMessage.forgotPassword,
+                                      color:
+                                          AppColor.textColor.withOpacity(0.7),
+                                      fontSize: AppSize.smallTextSize)),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 20.h,
                         ),
                         AppButtons(
                           onPressed: () {},
-                          text: 'Login',
+                          text: AppMessage.logIn,
                           fontWeight: FontWeight.bold,
                           backgroundColor: AppColor.mainColor,
                         ),
@@ -178,12 +181,12 @@ class _LoginState extends State<Login> {
                         RichText(
                             text: GeneralWidget.textSpan(children: [
                           TextSpan(
-                              text: 'you dont have account?',
+                              text: AppMessage.doNotHaveAccount,
                               style: TextStyle(
                                   color: AppColor.textColor.withOpacity(0.5),
                                   fontSize: AppSize.smallTextSize)),
                           TextSpan(
-                              text: '  Sign Up',
+                              text: AppMessage.signUp,
                               style: TextStyle(
                                   color: AppColor.mainColor,
                                   fontSize: AppSize.smallTextSize)),

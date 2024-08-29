@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:salons/BackEnd/handler_models.dart';
 
 class AppText extends StatelessWidget {
   final String text;
@@ -34,6 +35,7 @@ class AppText extends StatelessWidget {
       text,
       textAlign: align,
       textDirection: textDirection,
+      textScaler: TextScaler.linear(ScaleSize.textScaleFactor(context)),
       style: TextStyle(
           color: color,
           overflow: overflow ?? TextOverflow.clip,
@@ -69,4 +71,3 @@ class AppText extends StatelessWidget {
         shadows: shadow);
   }
 }
-
