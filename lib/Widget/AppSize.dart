@@ -5,7 +5,7 @@ class AppSize {
   static double textFieldsFontSize = 13.5.spMin;
   static double textFieldsBorderWidth = 1.2.spMin;
   static double textFieldsBorderRadius = 8.spMin;
-  static double textFieldsHintSize = 11.5.spMin;
+  static double textFieldsHintSize = 13.spMin;
   static double contentPadding = 13.spMin;
   static double headSize = 30.spMin;
   static double titleSize = 23.spMin;

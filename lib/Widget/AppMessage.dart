@@ -158,7 +158,8 @@ class AppMessage {
   static String notComplete = 'غير مكتمل';
   static String contractFile = 'ملف العقد';
   static String profile = 'الملف الشخصي';
-  static String email = 'البريد الالكتروني';
+  static String email = 'email';
+  static String emailAr = 'البريد الالكتروني';
   static String region = 'المنطقة';
   static String city = 'المدينة';
   static String phone = 'رقم الجوال';
@@ -200,7 +201,8 @@ class AppMessage {
   static String deleteReason = 'سبب الحذف';
   static String theUser = 'المستخدم';
   static String celebrity = 'مشهور';
-  static String user = 'مستخدم';
+  static String user = 'user';
+  static String userAr = 'مستخدم';
   static String details = 'تفاصيل';
   static String messageDetails = 'تفاصيل الرسالة';
   static String subject = 'موضوع الرسالة';
@@ -301,7 +303,8 @@ class AppMessage {
   static const String morning = 'صباحا';
   static const String noon = 'مساءا';
   static const String resetPass = 'اعادة تعيين كلمة المرور';
-  static const String confirmPass = 'تاكيد كلمة المرور';
+  static const String confirmPassAr = 'تاكيد كلمة المرور';
+  static const String confirmPass = 'confirm password';
   static const String changePassword = "تغير كلمة المرور";
   static const String addLink = 'اضافة رابط';
   static const String sharingType = "نوع المشاركة";
@@ -335,5 +338,8 @@ class AppMessage {
   static String other = "اخرى";
   static String currentPassword = 'كلمة المرور الحالية';
   static String accountInfo = 'معلومات الحساب';
-
+  static String youHaveAccount = 'you have account?';
+  static String youHaveAccountAr = 'لديك حساب ؟';
+  static String createAccount = 'Create account';
+  static String createAccountAr = 'انشء حساب';
 }

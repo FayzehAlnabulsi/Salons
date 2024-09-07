@@ -1,10 +1,13 @@
 import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salons/Screans/Account/signUp.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
 import 'package:salons/Widget/AppMessage.dart';
 import 'package:salons/Widget/AppPath.dart';
+import 'package:salons/Widget/AppRoutes.dart';
 import 'package:salons/Widget/AppSize.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:salons/Widget/AppTextFields.dart';
@@ -184,12 +187,17 @@ class _LoginState extends State<Login> {
                               text: AppMessage.doNotHaveAccount,
                               style: TextStyle(
                                   color: AppColor.textColor.withOpacity(0.5),
-                                  fontSize: AppSize.smallTextSize)),
+                                  fontSize: AppSize.subTitle)),
                           TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  AppRoutes.pushReplacementTo(
+                                      context, SignUp());
+                                },
                               text: AppMessage.signUp,
                               style: TextStyle(
                                   color: AppColor.mainColor,
-                                  fontSize: AppSize.smallTextSize)),
+                                  fontSize: AppSize.subTitle)),
                         ]))
                       ],
                     ),
