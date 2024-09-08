@@ -22,10 +22,18 @@ class AppDialog {
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             titlePadding: EdgeInsets.zero,
             elevation: 0,
+            contentPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            content: Container(
-              alignment: AlignmentDirectional.center,
-              child: Lottie.asset(AppPath.loading),
+            content: UnconstrainedBox(
+              child: Container(
+                height: 150.h, width: 150.h,
+                decoration: BoxDecoration(
+                    color: AppColor.white,
+                    borderRadius: BorderRadius.all(Radius.circular(200.r))),
+                alignment: AlignmentDirectional.topCenter,
+                child: Lottie.asset(AppPath.loading, fit: BoxFit.cover, alignment: Alignment.topCenter),
+              ),
             ),
           );
         });

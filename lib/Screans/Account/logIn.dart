@@ -2,9 +2,11 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salons/Screans/Account/porgot_password.dart';
 import 'package:salons/Screans/Account/signUp.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
+import 'package:salons/Widget/AppDialog.dart';
 import 'package:salons/Widget/AppMessage.dart';
 import 'package:salons/Widget/AppPath.dart';
 import 'package:salons/Widget/AppRoutes.dart';
@@ -163,11 +165,16 @@ class _LoginState extends State<Login> {
                                     contentPadding: EdgeInsets.zero),
                               )),
                               Flexible(
-                                  child: AppText(
-                                      text: AppMessage.forgotPassword,
-                                      color:
-                                          AppColor.textColor.withOpacity(0.7),
-                                      fontSize: AppSize.smallTextSize)),
+                                  child: InkWell(
+                                onTap: () {
+                                  AppRoutes.pushTo(
+                                      context, const ForgotPassword());
+                                },
+                                child: AppText(
+                                    text: AppMessage.forgotPassword,
+                                    color: AppColor.textColor.withOpacity(0.7),
+                                    fontSize: AppSize.smallTextSize),
+                              )),
                             ],
                           ),
                         ),
@@ -175,7 +182,11 @@ class _LoginState extends State<Login> {
                           height: 20.h,
                         ),
                         AppButtons(
-                          onPressed: () {},
+                          onPressed: () async {
+                            AppDialog.showLoading(context: context);
+                            await Future.delayed(const Duration(seconds: 2));
+                            Navigator.pop(context);
+                          },
                           text: AppMessage.logIn,
                           fontWeight: FontWeight.bold,
                           backgroundColor: AppColor.mainColor,

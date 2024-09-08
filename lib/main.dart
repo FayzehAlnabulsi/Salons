@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:salons/Screans/Account/signUp.dart';
 import 'package:salons/Widget/AppMessage.dart';
 import 'BackEnd/provider_class.dart';
 import 'Screans/Account/Introduction.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
                   // routes: <String, WidgetBuilder>{
                   //   Login.route: (_) => Login(),
                   // },
-                  home: const IntroductionScreen(),
+                  home: SignUp(),
                   title: AppMessage.salons,
                   theme: ThemeData(
                       scaffoldBackgroundColor: AppColor.backGroundColor,

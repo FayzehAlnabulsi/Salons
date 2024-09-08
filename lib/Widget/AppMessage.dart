@@ -60,7 +60,8 @@ class AppMessage {
   static String doNotHaveAccountAr = 'ليس لديك حساب؟';
   static String signUp = '  Sign Up';
   static String signUpAr = 'انشئ حساب  ';
-
+  static const String resetPass = 'reset password';
+  static const String resetPassAr = 'اعادة تعيين كلمة المرور';
 
   static String rule = 'مستخدميين النظام';
   static String paymentGetaway = 'بوابات الدفع';
@@ -302,7 +303,7 @@ class AppMessage {
   static const String mustNotAttend = 'لا يلزم الحضور';
   static const String morning = 'صباحا';
   static const String noon = 'مساءا';
-  static const String resetPass = 'اعادة تعيين كلمة المرور';
+
   static const String confirmPassAr = 'تاكيد كلمة المرور';
   static const String confirmPass = 'confirm password';
   static const String changePassword = "تغير كلمة المرور";

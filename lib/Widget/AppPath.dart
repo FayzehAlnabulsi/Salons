@@ -5,4 +5,5 @@ class AppPath {
 
   ///json=============================================================
   static String loading = 'assets/lottie/loading.json';
+  static String resetPassword = 'assets/lottie/resetPassword.json';
 }

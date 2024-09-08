@@ -62,132 +62,129 @@ class _IntroductionScreenState extends State<IntroductionScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: AppColor.beige,
-        body: Column(
-          children: [
-            Expanded(
-              flex: 6,
-              child: PageView.builder(
-                itemCount: images.length,
-                controller: pageController,
-                allowImplicitScrolling: true,
-                itemBuilder: (con, index) {
-                  return Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-//color container==========================================================================================================================================================
-                      Container(
-                          height: GeneralWidget.height(context),
-                          width: GeneralWidget.width(context),
-                          decoration: BoxDecoration(color: AppColor.beige)),
-//arc container==========================================================================================================================================================
-                      ClipPath(
-                        clipper: SimpleCurveClipper(),
-                        child: Container(
-                          alignment: AlignmentDirectional.bottomCenter,
-                          height: GeneralWidget.height(context) * 0.34,
-                          width: GeneralWidget.width(context),
-                          color: AppColor.subColor,
-                        ),
+    return Scaffold(
+      backgroundColor: AppColor.beige,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 6,
+            child: PageView.builder(
+              itemCount: images.length,
+              controller: pageController,
+              allowImplicitScrolling: true,
+              itemBuilder: (con, index) {
+                return Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: [
+    //color container==========================================================================================================================================================
+                    Container(
+                        height: GeneralWidget.height(context),
+                        width: GeneralWidget.width(context),
+                        decoration: BoxDecoration(color: AppColor.beige)),
+    //arc container==========================================================================================================================================================
+                    ClipPath(
+                      clipper: SimpleCurveClipper(),
+                      child: Container(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        height: GeneralWidget.height(context) * 0.34,
+                        width: GeneralWidget.width(context),
+                        color: AppColor.subColor,
                       ),
-//image container==========================================================================================================================================================
-                      Positioned(
-                          top: index == 1 ? 250.h : 80.h,
-                          child: images[index]),
+                    ),
+    //image container==========================================================================================================================================================
+                    Positioned(
+                        top: index == 1 ? 250.h : 80.h,
+                        child: images[index]),
 
-//title text==========================================================================================================================================================
-                      Positioned(
-                        top: index == 1 ? 150.h : 440.h,
-                        child: AppText(
-                          text: title[index],
-                          fontSize: AppSize.headSize - 5,
-                          color: AppColor.textColor,
-                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                          align: TextAlign.center,
-                        ),
+    //title text==========================================================================================================================================================
+                    Positioned(
+                      top: index == 1 ? 150.h : 440.h,
+                      child: AppText(
+                        text: title[index],
+                        fontSize: AppSize.headSize - 5,
+                        color: AppColor.textColor,
+                        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
+                        align: TextAlign.center,
                       ),
-// //subTitle text==========================================================================================================================================================
-                      Positioned(
-                        top: index == 1 ? 190.h : 480.h,
-                        left: 20.w,
-                        right: 20.w,
-                        child: AppText(
-                          text: subtitle[index],
-                          fontSize: AppSize.titleSize,
-                          color: AppColor.textColor.withOpacity(0.8),
-                          align: TextAlign.center,
-                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                        ),
+                    ),
+    // //subTitle text==========================================================================================================================================================
+                    Positioned(
+                      top: index == 1 ? 190.h : 480.h,
+                      left: 20.w,
+                      right: 20.w,
+                      child: AppText(
+                        text: subtitle[index],
+                        fontSize: AppSize.titleSize,
+                        color: AppColor.textColor.withOpacity(0.8),
+                        align: TextAlign.center,
+                        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                       ),
-// //dot indicator==========================================================================================================================================================
-                    ],
-                  );
-                },
-              ),
+                    ),
+    // //dot indicator==========================================================================================================================================================
+                  ],
+                );
+              },
             ),
-//===========================================================================================================
-            Container(
-              height: 60.h,
-              //color: amber,
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(),
+          ),
+    //===========================================================================================================
+          Container(
+            height: 60.h,
+            //color: amber,
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(),
 
-                  ///Dots
-                  SmoothPageIndicator(
-                    controller: pageController,
-                    count: images.length,
-                    onDotClicked: (index) {
-                      pageController.animateToPage(index,
-                          duration: const Duration(milliseconds: 600),
-                          curve: Curves.easeIn);
-                      setState(() {
-                        currentIndex = index;
-                      });
+                ///Dots
+                SmoothPageIndicator(
+                  controller: pageController,
+                  count: images.length,
+                  onDotClicked: (index) {
+                    pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.easeIn);
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  effect: JumpingDotEffect(
+                      spacing: 15.0,
+                      radius: 25.0.r,
+                      dotWidth: 10.0,
+                      dotHeight: 10.0,
+                      dotColor: Colors.grey,
+                      // verticalOffset: 15,
+                      activeDotColor: AppColor.mainColor),
+                ),
+
+                ///Start
+                GestureDetector(
+                    onTap: () async {
+                      SharedPreferences preferences =
+                          await SharedPreferences.getInstance();
+                      await preferences.setInt('initScreen', 1);
+                      AppRoutes.pushReplacementTo(context, Login());
                     },
-                    effect: JumpingDotEffect(
-                        spacing: 15.0,
-                        radius: 25.0.r,
-                        dotWidth: 10.0,
-                        dotHeight: 10.0,
-                        dotColor: Colors.grey,
-                        // verticalOffset: 15,
-                        activeDotColor: AppColor.mainColor),
-                  ),
-
-                  ///Start
-                  GestureDetector(
-                      onTap: () async {
-                        SharedPreferences preferences =
-                            await SharedPreferences.getInstance();
-                        await preferences.setInt('initScreen', 1);
-                        AppRoutes.pushReplacementTo(context, Login());
-                      },
-                      child: Visibility(
-                        visible:
-                            currentIndex < images.length - 1 ? false : true,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 10.h),
-                          child: AppText(
-                            text: AppMessage.logIn,
-                            fontSize: AppSize.labelSize,
-                            color: AppColor.textColor,
-                            align: TextAlign.center,
-                            fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                          ),
+                    child: Visibility(
+                      visible:
+                          currentIndex < images.length - 1 ? false : true,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: AppText(
+                          text: AppMessage.logIn,
+                          fontSize: AppSize.labelSize,
+                          color: AppColor.textColor,
+                          align: TextAlign.center,
+                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
                         ),
-                      )),
-                ],
-              ),
-            )
-          ],
-        ),
+                      ),
+                    )),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

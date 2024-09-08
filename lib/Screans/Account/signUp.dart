@@ -22,7 +22,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  bool isSalon = true;
+  bool isUser = true;
   @override
   void initState() {
     super.initState();
@@ -44,14 +44,15 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   height: GeneralWidget.height(context) / 2,
                   width: GeneralWidget.width(context) / 2,
-                  color: AppColor.mainColor,
-                  margin: EdgeInsets.only(bottom: 30.h, top: 70.h),
+                  color:
+                      !isUser ? AppColor.mainColor : AppColor.backGroundColor,
+                  margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
                 ),
                 Container(
                   height: GeneralWidget.height(context) / 2,
                   width: GeneralWidget.width(context) / 2,
-                  color: AppColor.mainColor,
-                  margin: EdgeInsets.only(bottom: 30.h, top: 70.h),
+                  color: isUser ? AppColor.mainColor : AppColor.backGroundColor,
+                  margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
                 ),
               ],
             ),
@@ -60,39 +61,35 @@ class _SignUpState extends State<SignUp> {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       height: GeneralWidget.height(context) / 7,
                       width: GeneralWidget.width(context),
-                      decoration: BoxDecoration(
-                        color: AppColor.mainColor,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 16.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  isSalon = false;
+                                  isUser = false;
                                 });
                               },
                               child: Container(
                                 height: double.infinity,
                                 decoration: BoxDecoration(
-                                    color: !isSalon
+                                    color: !isUser
                                         ? AppColor.backGroundColor
-                                        : null,
+                                        : AppColor.mainColor,
                                     borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(
-                                            isSalon ? 50.r : 0))),
-                                padding: EdgeInsets.only(
-                                    top: 10.h, left: 65.w, right: 65.w),
+                                        bottomRight:
+                                            Radius.circular(isUser ? 50.r : 0),
+                                        topRight: Radius.circular(
+                                            !isUser ? 50.r : 0))),
                                 child: Center(
                                   child: AppText(
                                     text: AppMessage.salons,
                                     fontSize: AppSize.secondaryTitle,
-                                    color: !isSalon
+                                    color: !isUser
                                         ? AppColor.mainColor
                                         : AppColor.white,
                                     fontWeight: FontWeight.bold,
@@ -100,37 +97,39 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
-                            InkWell(
+                          ),
+                          Flexible(
+                            child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  isSalon = true;
+                                  isUser = true;
                                 });
                               },
                               child: Container(
                                 height: double.infinity,
                                 decoration: BoxDecoration(
-                                    color: isSalon
+                                    color: isUser
                                         ? AppColor.backGroundColor
-                                        : null,
+                                        : AppColor.mainColor,
                                     borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(isUser ? 50.r : 0),
                                         bottomLeft: Radius.circular(
-                                            !isSalon ? 50.r : 0))),
-                                padding: EdgeInsets.only(
-                                    top: 10.h, left: 65.w, right: 65.w),
+                                            !isUser ? 50.r : 0))),
                                 child: Center(
                                   child: AppText(
                                     text: AppMessage.user,
                                     fontSize: AppSize.secondaryTitle,
-                                    color: isSalon
+                                    color: isUser
                                         ? AppColor.mainColor
                                         : AppColor.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ],
@@ -138,108 +137,117 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   height: GeneralWidget.height(context) / 1.17,
                   width: GeneralWidget.width(context),
-                  decoration: BoxDecoration(
-                      color: AppColor.backGroundColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft:
-                              !isSalon ? Radius.zero : Radius.circular(40.r),
-                          topRight:
-                              !isSalon ? Radius.circular(40.r) : Radius.zero)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.r),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 5.r, top: 70.h),
-                              child: AppText(
-                                text: AppMessage.createAccount,
-                                fontSize: AppSize.secondaryTitle,
-                                color: AppColor.textColor.withOpacity(0.7),
+                  color: AppColor.mainColor,
+                  child: Container(
+                    height: GeneralWidget.height(context) / 1.17,
+                    width: GeneralWidget.width(context),
+                    decoration: BoxDecoration(
+                        color: AppColor.backGroundColor,
+                        borderRadius: BorderRadius.only(
+                            topLeft:
+                                !isUser ? Radius.zero : Radius.circular(40.r),
+                            topRight:
+                                !isUser ? Radius.circular(40.r) : Radius.zero)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.r),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 5.r, top: 70.h),
+                                child: AppText(
+                                  text: AppMessage.createAccount,
+                                  fontSize: AppSize.secondaryTitle,
+                                  color: AppColor.textColor.withOpacity(0.7),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                            AppTextFields(
-                              validator: (v) =>
-                                  AppValidator.validatorUserName(v),
-                              controller: TextEditingController(),
-                              hintText: AppMessage.userName,
-                              fillColor: AppColor.backGroundColor,
-                              borderColor: AppColor.subColor.withOpacity(0.6),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 10.h),
-                              child: AppTextFields(
+                              SizedBox(
+                                height: 30.h,
+                              ),
+                              AppTextFields(
                                 validator: (v) =>
-                                    AppValidator.validatorEmail(v),
+                                    AppValidator.validatorUserName(v),
                                 controller: TextEditingController(),
-                                hintText: AppMessage.email,
+                                hintText: AppMessage.userName,
                                 fillColor: AppColor.backGroundColor,
                                 borderColor: AppColor.subColor.withOpacity(0.6),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 10.h),
-                              child: AppTextFields(
-                                validator: (v) =>
-                                    AppValidator.validatorEmpty(v),
-                                controller: TextEditingController(),
-                                hintText: AppMessage.password,
-                                fillColor: AppColor.backGroundColor,
-                                borderColor: AppColor.subColor.withOpacity(0.6),
+                              Padding(
+                                padding: EdgeInsets.only(top: 10.h),
+                                child: AppTextFields(
+                                  validator: (v) =>
+                                      AppValidator.validatorEmail(v),
+                                  controller: TextEditingController(),
+                                  hintText: AppMessage.email,
+                                  fillColor: AppColor.backGroundColor,
+                                  borderColor:
+                                      AppColor.subColor.withOpacity(0.6),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 10.h),
-                              child: AppTextFields(
-                                validator: (v) =>
-                                    AppValidator.validatorEmpty(v),
-                                controller: TextEditingController(),
-                                hintText: AppMessage.confirmPass,
-                                fillColor: AppColor.backGroundColor,
-                                borderColor: AppColor.subColor.withOpacity(0.6),
+                              Padding(
+                                padding: EdgeInsets.only(top: 10.h),
+                                child: AppTextFields(
+                                  validator: (v) =>
+                                      AppValidator.validatorEmpty(v),
+                                  controller: TextEditingController(),
+                                  hintText: AppMessage.password,
+                                  fillColor: AppColor.backGroundColor,
+                                  borderColor:
+                                      AppColor.subColor.withOpacity(0.6),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 50.h,
-                            ),
-                            AppButtons(
-                              onPressed: () {},
-                              text: AppMessage.signUp,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: AppColor.mainColor,
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20.h),
-                          child: RichText(
-                              text: GeneralWidget.textSpan(children: [
-                            TextSpan(
-                                text: AppMessage.youHaveAccount,
-                                style: TextStyle(
-                                    color: AppColor.textColor.withOpacity(0.5),
-                                    fontSize: AppSize.subTitle)),
-                            TextSpan(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    AppRoutes.pushReplacementTo(
-                                        context, Login());
-                                  },
-                                text: '  ${AppMessage.logIn}',
-                                style: TextStyle(
-                                    color: AppColor.mainColor,
-                                    fontSize: AppSize.subTitle)),
-                          ])),
-                        )
-                      ],
+                              Padding(
+                                padding: EdgeInsets.only(top: 10.h),
+                                child: AppTextFields(
+                                  validator: (v) =>
+                                      AppValidator.validatorEmpty(v),
+                                  controller: TextEditingController(),
+                                  hintText: AppMessage.confirmPass,
+                                  fillColor: AppColor.backGroundColor,
+                                  borderColor:
+                                      AppColor.subColor.withOpacity(0.6),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 50.h,
+                              ),
+                              AppButtons(
+                                onPressed: () {},
+                                text: AppMessage.signUp,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: AppColor.mainColor,
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                            child: RichText(
+                                text: GeneralWidget.textSpan(children: [
+                              TextSpan(
+                                  text: AppMessage.youHaveAccount,
+                                  style: TextStyle(
+                                      color:
+                                          AppColor.textColor.withOpacity(0.5),
+                                      fontSize: AppSize.subTitle)),
+                              TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      AppRoutes.pushReplacementTo(
+                                          context, Login());
+                                    },
+                                  text: '  ${AppMessage.logIn}',
+                                  style: TextStyle(
+                                      color: AppColor.mainColor,
+                                      fontSize: AppSize.subTitle)),
+                            ])),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
