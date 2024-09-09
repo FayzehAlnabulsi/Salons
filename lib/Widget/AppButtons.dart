@@ -55,7 +55,7 @@ class AppButtons extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                   radius ?? AppSize.textFieldsBorderRadius),
               side: side ?? BorderSide.none),
-          backgroundColor: backgroundColor ?? AppColor.textColor,
+          backgroundColor: backgroundColor ?? AppColor.mainColor,
           elevation: elevation ?? 1.0,
           textStyle: TextStyle(
               fontFamily: GoogleFonts.tajawal().fontFamily,
@@ -66,13 +66,16 @@ class AppButtons extends StatelessWidget {
         ),
         onPressed: onPressed,
         icon: icon?? const SizedBox(),
-        label: label ??
-            AppText(
-                fontSize: textSize ?? AppSize.buttonsFontSize,
-                text: text,
-                color: textStyleColor ?? AppColor.white,
-                fontWeight: fontWeight,
-                fontFamily: GoogleFonts.tajawal().fontFamily),
+        label: Padding(
+          padding: EdgeInsets.only(top: 3.h),
+          child: label ??
+              AppText(
+                  fontSize: textSize ?? AppSize.buttonsFontSize,
+                  text: text,
+                  color: textStyleColor ?? AppColor.white,
+                  fontWeight: fontWeight,
+                  fontFamily: GoogleFonts.tajawal().fontFamily),
+        ),
       ),
     );
   }

@@ -62,6 +62,8 @@ class AppMessage {
   static String signUpAr = 'انشئ حساب  ';
   static const String resetPass = 'reset password';
   static const String resetPassAr = 'اعادة تعيين كلمة المرور';
+  static String send = 'send';
+  static String sendAr = 'ارسال';
 
   static String rule = 'مستخدميين النظام';
   static String paymentGetaway = 'بوابات الدفع';
@@ -97,7 +99,7 @@ class AppMessage {
   static String celebrityManagementText = 'ادارة المشاهير';
   static String mandatoryTx = 'حقل اجباري';
   static String invalidPassword =
-  'يجب أن يكون طول نص كلمة المرور على الأقل 8 حروفٍ/حرفًا'; //'كلمة المرور يجب ان لا تقل عن 8 خانات';
+      'يجب أن يكون طول نص كلمة المرور على الأقل 8 حروفٍ/حرفًا'; //'كلمة المرور يجب ان لا تقل عن 8 خانات';
   static String noMatch = 'كلمة المرور و تأكيد كلمة المرور لا تتطابق';
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
@@ -109,13 +111,13 @@ class AppMessage {
   static String description = 'الوصف';
   static String shouldNotStartWithNumber = 'يجب ان لا يبدا الكوبون برقم';
   static String englishOnlyCoupon =
-  'يجب ان يكون اسم الكوبون حروف وارقام انجليزية';
+      'يجب ان يكون اسم الكوبون حروف وارقام انجليزية';
   static String noLessThan4 = "الحد الادنى 4 خانات";
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String arabicOnlyValidation = 'يجب ان يكون الاسم حروف باللغة العربية ';
   static String pleaseEnterFullName = 'الرجاء كتابة الاسم الثلاثي الكامل';
   static String englishOnlyValidation =
-  'يجب ان يكون اسم المستخدم باللغة الانجليزية';
+      'يجب ان يكون اسم المستخدم باللغة الانجليزية';
   static String notZero = 'يجب ان يكون اكبر من صفر';
   static String confirmDelete = 'هل انت متاكد من اكمال عملية الحذف؟';
   static String yes = 'نعم';
@@ -178,11 +180,11 @@ class AppMessage {
   static String specificCelebrity = 'مشهور محدد';
   static String couponTo = 'الكوبون يشمل';
   static String searchByCelebrityData =
-  'ابحث باسم الشهرة او الاسم الرباعي او اسم المستخدم';
+      'ابحث باسم الشهرة او الاسم الرباعي او اسم المستخدم';
   static String searchByUserData =
-  'ابحث بالاسم او الاسم الرباعي او اسم المستخدم';
+      'ابحث بالاسم او الاسم الرباعي او اسم المستخدم';
   static String searchBySupportData =
-  'ابحث بالاسم او موضوع الرسالة او تفاصيل الرسالة';
+      'ابحث بالاسم او موضوع الرسالة او تفاصيل الرسالة';
   static String notLess = 'لا يمكنك تقليل عدد المستفيدين';
   static String searchCelebrity = 'ابحث عن مشهور';
   static String randomErrorMessage = 'حدث خطآ ما حاول لاحقا';
@@ -224,7 +226,7 @@ class AppMessage {
   static String note = 'الملاحظة';
   static String warnContent = 'محتوى الانذار';
   static String celebrityBannedSuccessfully =
-  'تم حظر المشهور و اغلاق البث بنجاح';
+      'تم حظر المشهور و اغلاق البث بنجاح';
   static String searchByCelebrity = 'ابحث باسم المشهور';
   static String searchByCelebrityOrUser = 'ابحث باسم المشهور او المستخدم';
   static String orderNumber = 'رقم الطلب';
@@ -278,7 +280,7 @@ class AppMessage {
   static String idFile = 'ملف الرخصة الاعلامية';
   static String update = 'تعديل البيانات';
   static const String emailAndUsernameTaken =
-  'البريد الالكتروني واسم المستخدم موجود مسبقا';
+      'البريد الالكتروني واسم المستخدم موجود مسبقا';
   static const String usernameTaken = 'اسم المستخدم موجود مسبقا';
   static const String emailTaken = 'البريد الالكتروني موجود مسبقا';
   static const String invalidEmailFormat = 'صيغة البريد الالكتروني غير صحيحة';
@@ -335,7 +337,7 @@ class AppMessage {
   static const String activeOrderType = 'الانواع الاكثر طلب';
   static const String quickAuthTiltle = 'تسجيل الدخول السريع';
   static String quickAuthContent =
-  "هل تريد تفعيل تسجيل الدخول السريع ${Platform.isAndroid ? 'باستخدام البصمة' : Platform.isIOS ? 'باستخدام بصمة الوجه' : ''}";
+      "هل تريد تفعيل تسجيل الدخول السريع ${Platform.isAndroid ? 'باستخدام البصمة' : Platform.isIOS ? 'باستخدام بصمة الوجه' : ''}";
   static String other = "اخرى";
   static String currentPassword = 'كلمة المرور الحالية';
   static String accountInfo = 'معلومات الحساب';

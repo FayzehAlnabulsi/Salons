@@ -17,7 +17,7 @@ class AppSize {
   static double appBarTextSize = 20.spMin;
   static double notesSize = 14.spMin;
 
-  static double buttonsFontSize = 15.spMin;
+  static double buttonsFontSize = 17.spMin;
   static double smallButtonsText = 13.spMin;
   static double errorSize = 10.spMin;
   static double iconsSize = 18.spMin;

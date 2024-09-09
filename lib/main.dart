@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                   // routes: <String, WidgetBuilder>{
                   //   Login.route: (_) => Login(),
                   // },
-                  home: SignUp(),
+                  home: IntroductionScreen(),
                   title: AppMessage.salons,
                   theme: ThemeData(
                       scaffoldBackgroundColor: AppColor.backGroundColor,
