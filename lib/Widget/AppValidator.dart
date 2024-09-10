@@ -119,6 +119,23 @@ class AppValidator {
     return null;
   }
 
+  //validate password ==========================================================
+  static String? validatorPassword(String? value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~-_]).{8,}$';
+    RegExp regExp = RegExp(pattern);
+    if (value != null || value!.trim().isEmpty) {
+      return AppMessage.mandatoryTx;
+    } else if (value.length < 8) {
+      return AppMessage.invalidPasswordLength;
+    } else if (regExp.hasMatch(value)) {
+      return null;
+    } else {
+      return AppMessage.invalidPassword;
+    }
+    ;
+  }
+
 //valid Phone data============================================================
   static String? validatorPhone(phone) {
     final phoneRegExp = RegExp(r"^\s*[0-9]{10}$");

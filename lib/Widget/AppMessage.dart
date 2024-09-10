@@ -64,7 +64,25 @@ class AppMessage {
   static const String resetPassAr = 'اعادة تعيين كلمة المرور';
   static String send = 'send';
   static String sendAr = 'ارسال';
-
+  static String mandatoryTx = 'mandatory field';
+  static String mandatoryTxAr = 'حقل اجباري';
+  static String invalidEmail = "invalid email";
+  static String invalidEmailAr = "البريد الالكتروني غير صالح";
+  static String noMatch = 'password and confirmPassword do not match';
+  static String noMatchAr = 'كلمة المرور و تأكيد كلمة المرور لا تتطابق';
+  static String invalidPassword =
+      'password should contain at least one  uppercase, lowercase, number and symbol';
+  static String invalidPasswordAr =
+      'يجب ان تحتوي كلمة المرور على حرف كبير, صغير, رقم و رمز';
+  static String invalidPasswordLength =
+      'password length should be at least 8 characters';
+  static String invalidPasswordLengthAr =
+      'يجب أن يكون طول كلمة المرور على الأقل 8 حروفٍ/حرفًا';
+  static String englishOnlyValidation = 'should be in english only';
+  static String englishOnlyValidationAr = 'يجب ان يكون باللغة الانجليزية';
+  static String noLessThan4 = "length should be at least 4 characters";
+  static String noLessThan4Ar = "الحد الادنى 4 خانات";
+  //======================================================================================
   static String rule = 'مستخدميين النظام';
   static String paymentGetaway = 'بوابات الدفع';
   static String settingsText = 'الاعدادات';
@@ -97,10 +115,8 @@ class AppMessage {
   static String usersDataText = 'المستخدمين';
   static String celebrityText = 'المشاهير';
   static String celebrityManagementText = 'ادارة المشاهير';
-  static String mandatoryTx = 'حقل اجباري';
-  static String invalidPassword =
-      'يجب أن يكون طول نص كلمة المرور على الأقل 8 حروفٍ/حرفًا'; //'كلمة المرور يجب ان لا تقل عن 8 خانات';
-  static String noMatch = 'كلمة المرور و تأكيد كلمة المرور لا تتطابق';
+
+  //'كلمة المرور يجب ان لا تقل عن 8 خانات';
   static String startWithZero = 'يجب ان لا يبدأ رقم الجوال بالرقم 0';
   static String startWith5 = 'يجب ان يبدأ رقم الجوال بالرقم 5';
   static String noLessThan9 = "يجب ان يكون رقم الجوال 9 خانات";
@@ -112,12 +128,11 @@ class AppMessage {
   static String shouldNotStartWithNumber = 'يجب ان لا يبدا الكوبون برقم';
   static String englishOnlyCoupon =
       'يجب ان يكون اسم الكوبون حروف وارقام انجليزية';
-  static String noLessThan4 = "الحد الادنى 4 خانات";
+
   static String noMoreThan14 = "يجب ان  لا يكون الاسم اكثر من  14 خانات";
   static String arabicOnlyValidation = 'يجب ان يكون الاسم حروف باللغة العربية ';
   static String pleaseEnterFullName = 'الرجاء كتابة الاسم الثلاثي الكامل';
-  static String englishOnlyValidation =
-      'يجب ان يكون اسم المستخدم باللغة الانجليزية';
+
   static String notZero = 'يجب ان يكون اكبر من صفر';
   static String confirmDelete = 'هل انت متاكد من اكمال عملية الحذف؟';
   static String yes = 'نعم';
@@ -221,7 +236,7 @@ class AppMessage {
   static String addedToList = 'مضاف الى القائمة';
   static String notAddedToList = 'غير مضاف الى القائمة';
   static String invalidFormat = 'لايوجد ملف لعرضه';
-  static String invalidEmail = "البريد الالكتروني غير صالح";
+
   static String title = 'العنوان';
   static String note = 'الملاحظة';
   static String warnContent = 'محتوى الانذار';

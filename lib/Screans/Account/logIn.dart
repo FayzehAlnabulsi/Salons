@@ -1,9 +1,11 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salons/Screans/Account/porgot_password.dart';
 import 'package:salons/Screans/Account/signUp.dart';
+import 'package:salons/Screans/Home/main_screan.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
 import 'package:salons/Widget/AppDialog.dart';
@@ -11,6 +13,7 @@ import 'package:salons/Widget/AppMessage.dart';
 import 'package:salons/Widget/AppPath.dart';
 import 'package:salons/Widget/AppRoutes.dart';
 import 'package:salons/Widget/AppSize.dart';
+import 'package:salons/Widget/AppSnackBar.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:salons/Widget/AppTextFields.dart';
 import 'package:salons/Widget/AppValidator.dart';
@@ -26,6 +29,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool rememberMe = false;
 
   @override
@@ -127,9 +132,9 @@ class _LoginState extends State<Login> {
                           height: 20.h,
                         ),
                         AppTextFields(
-                          validator: (v) => AppValidator.validatorUserName(v),
-                          controller: TextEditingController(),
-                          hintText: AppMessage.userName,
+                          validator: (v) => AppValidator.validatorEmail(v),
+                          controller: email,
+                          hintText: AppMessage.email,
                           fillColor: AppColor.backGroundColor,
                           borderColor: AppColor.subColor.withOpacity(0.6),
                         ),
@@ -137,8 +142,9 @@ class _LoginState extends State<Login> {
                           padding: EdgeInsets.only(top: 10.h),
                           child: AppTextFields(
                             validator: (v) => AppValidator.validatorEmpty(v),
-                            controller: TextEditingController(),
+                            controller: password,
                             hintText: AppMessage.password,
+                            obscureText: true,
                             fillColor: AppColor.backGroundColor,
                             borderColor: AppColor.subColor.withOpacity(0.6),
                           ),
@@ -184,8 +190,43 @@ class _LoginState extends State<Login> {
                         AppButtons(
                           onPressed: () async {
                             AppDialog.showLoading(context: context);
-                            await Future.delayed(const Duration(seconds: 2));
-                            Navigator.pop(context);
+                            try {
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: email.text,
+                                      password: password.text)
+                                  .then((user) {
+                                user != null
+                                    ? AppRoutes.pushReplacementTo(
+                                        context, const MainScreen())
+                                    : AppSnackBar.showInSnackBar(
+                                        context: context,
+                                        message: 'wrong email or password',
+                                        isSuccessful: false);
+                              });
+                            } on FirebaseAuthException catch (e) {
+                              Navigator.pop(context);
+                              if (e.code == 'user-not-found') {
+                                AppSnackBar.showInSnackBar(
+                                    context: context,
+                                    message: 'No user found for that email.',
+                                    isSuccessful: false);
+                                print('No user found for that email.');
+                              } else if (e.code == 'wrong-password') {
+                                AppSnackBar.showInSnackBar(
+                                    context: context,
+                                    message:
+                                        'Wrong password provided for that user.',
+                                    isSuccessful: false);
+                                print('Wrong password provided for that user.');
+                              } else {
+                                AppSnackBar.showInSnackBar(
+                                    context: context,
+                                    message: 'wrong email or password',
+                                    isSuccessful: false);
+                                print(e);
+                              }
+                            }
                           },
                           text: AppMessage.logIn,
                           fontWeight: FontWeight.bold,
