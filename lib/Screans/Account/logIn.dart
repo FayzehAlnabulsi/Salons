@@ -9,7 +9,7 @@ import 'package:salons/Screans/Home/main_screan.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
 import 'package:salons/Widget/AppDialog.dart';
-import 'package:salons/Widget/AppMessage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:salons/Widget/AppPath.dart';
 import 'package:salons/Widget/AppRoutes.dart';
 import 'package:salons/Widget/AppSize.dart';
@@ -29,6 +29,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final GlobalKey<FormState> _key = GlobalKey();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool rememberMe = false;
@@ -116,142 +117,159 @@ class _LoginState extends State<Login> {
                           BorderRadius.only(topLeft: Radius.circular(50.r))),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.r),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.r),
-                          child: AppText(
-                            text: AppMessage.logInAccount,
-                            fontSize: AppSize.subTitle,
-                            color: AppColor.textColor.withOpacity(0.7),
+                    child: Form(
+                      key: _key,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.r),
+                            child: AppText(
+                              text: AppLocalizations.of(context)!.logInAccount,
+                              fontSize: AppSize.subTitle,
+                              color: AppColor.textColor.withOpacity(0.7),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        AppTextFields(
-                          validator: (v) => AppValidator.validatorEmail(v),
-                          controller: email,
-                          hintText: AppMessage.email,
-                          fillColor: AppColor.backGroundColor,
-                          borderColor: AppColor.subColor.withOpacity(0.6),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10.h),
-                          child: AppTextFields(
-                            validator: (v) => AppValidator.validatorEmpty(v),
-                            controller: password,
-                            hintText: AppMessage.password,
-                            obscureText: true,
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          AppTextFields(
+                            validator: (v) =>
+                                AppValidator.validatorEmail(context, v),
+                            controller: email,
+                            hintText: AppLocalizations.of(context)!.email,
                             fillColor: AppColor.backGroundColor,
                             borderColor: AppColor.subColor.withOpacity(0.6),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10.h, left: 5.spMin),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                  child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    rememberMe = !rememberMe;
-                                  });
-                                },
-                                child: GeneralWidget.checkBoxTile(
-                                    value: rememberMe,
-                                    title: AppText(
-                                        text: AppMessage.rememberMe,
-                                        color:
-                                            AppColor.textColor.withOpacity(0.7),
-                                        fontSize: AppSize.smallTextSize),
-                                    contentPadding: EdgeInsets.zero),
-                              )),
-                              Flexible(
-                                  child: InkWell(
-                                onTap: () {
-                                  AppRoutes.pushTo(
-                                      context, const ForgotPassword());
-                                },
-                                child: AppText(
-                                    text: AppMessage.forgotPassword,
-                                    color: AppColor.textColor.withOpacity(0.7),
-                                    fontSize: AppSize.smallTextSize),
-                              )),
-                            ],
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h),
+                            child: AppTextFields(
+                              validator: (v) =>
+                                  AppValidator.validatorEmpty(context, v),
+                              controller: password,
+                              hintText: AppLocalizations.of(context)!.password,
+                              obscureText: true,
+                              fillColor: AppColor.backGroundColor,
+                              borderColor: AppColor.subColor.withOpacity(0.6),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        AppButtons(
-                          onPressed: () async {
-                            AppDialog.showLoading(context: context);
-                            try {
-                              await FirebaseAuth.instance
-                                  .signInWithEmailAndPassword(
-                                      email: email.text,
-                                      password: password.text)
-                                  .then((user) {
-                                user != null
-                                    ? AppRoutes.pushReplacementTo(
-                                        context, const MainScreen())
-                                    : AppSnackBar.showInSnackBar(
-                                        context: context,
-                                        message: 'wrong email or password',
-                                        isSuccessful: false);
-                              });
-                            } on FirebaseAuthException catch (e) {
-                              Navigator.pop(context);
-                              if (e.code == 'user-not-found') {
-                                AppSnackBar.showInSnackBar(
-                                    context: context,
-                                    message: 'No user found for that email.',
-                                    isSuccessful: false);
-                                print('No user found for that email.');
-                              } else if (e.code == 'wrong-password') {
-                                AppSnackBar.showInSnackBar(
-                                    context: context,
-                                    message:
-                                        'Wrong password provided for that user.',
-                                    isSuccessful: false);
-                                print('Wrong password provided for that user.');
-                              } else {
-                                AppSnackBar.showInSnackBar(
-                                    context: context,
-                                    message: 'wrong email or password',
-                                    isSuccessful: false);
-                                print(e);
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h, left: 5.spMin),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                    child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      rememberMe = !rememberMe;
+                                    });
+                                  },
+                                  child: GeneralWidget.checkBoxTile(
+                                      value: rememberMe,
+                                      title: AppText(
+                                          text: AppLocalizations.of(context)!
+                                              .rememberMe,
+                                          color: AppColor.textColor
+                                              .withOpacity(0.7),
+                                          fontSize: AppSize.smallTextSize),
+                                      contentPadding: EdgeInsets.zero),
+                                )),
+                                Flexible(
+                                    child: InkWell(
+                                  onTap: () {
+                                    AppRoutes.pushTo(
+                                        context, const ForgotPassword());
+                                  },
+                                  child: AppText(
+                                      text: AppLocalizations.of(context)!
+                                          .forgotPassword,
+                                      color:
+                                          AppColor.textColor.withOpacity(0.7),
+                                      fontSize: AppSize.smallTextSize),
+                                )),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          AppButtons(
+                            onPressed: () async {
+                              try {
+                                _key.currentState!.validate()
+                                    ? {
+                                        AppDialog.showLoading(context: context),
+                                        await FirebaseAuth.instance
+                                            .signInWithEmailAndPassword(
+                                                email: email.text,
+                                                password: password.text)
+                                            .then((user) {
+                                          user != null
+                                              ? AppRoutes.pushReplacementTo(
+                                                  context, const MainScreen())
+                                              : AppSnackBar.showInSnackBar(
+                                                  context: context,
+                                                  message:
+                                                      'wrong email or password',
+                                                  isSuccessful: false);
+                                        }),
+                                      }
+                                    : null;
+                              } on FirebaseAuthException catch (e) {
+                                Navigator.pop(context);
+                                if (e.code == 'user-not-found') {
+                                  AppSnackBar.showInSnackBar(
+                                      context: context,
+                                      message: 'No user found for that email.',
+                                      isSuccessful: false);
+                                  debugPrint('No user found for that email.');
+                                } else if (e.code == 'wrong-password') {
+                                  AppSnackBar.showInSnackBar(
+                                      context: context,
+                                      message:
+                                          'Wrong password provided for that user.',
+                                      isSuccessful: false);
+                                  debugPrint(
+                                      'Wrong password provided for that user.');
+                                } else {
+                                  _key.currentState!.validate()
+                                      ? AppSnackBar.showInSnackBar(
+                                          context: context,
+                                          message: 'wrong email or password',
+                                          isSuccessful: false)
+                                      : null;
+                                  debugPrint(e.toString());
+                                }
                               }
-                            }
-                          },
-                          text: AppMessage.logIn,
-                          fontWeight: FontWeight.bold,
-                          backgroundColor: AppColor.mainColor,
-                        ),
-                        SizedBox(height: 30.h),
-                        RichText(
-                            text: GeneralWidget.textSpan(children: [
-                          TextSpan(
-                              text: AppMessage.doNotHaveAccount,
-                              style: TextStyle(
-                                  color: AppColor.textColor.withOpacity(0.5),
-                                  fontSize: AppSize.subTitle)),
-                          TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  AppRoutes.pushReplacementTo(
-                                      context, SignUp());
-                                },
-                              text: AppMessage.signUp,
-                              style: TextStyle(
-                                  color: AppColor.mainColor,
-                                  fontSize: AppSize.subTitle)),
-                        ]))
-                      ],
+                            },
+                            text: AppLocalizations.of(context)!.logIn,
+                            fontWeight: FontWeight.bold,
+                            backgroundColor: AppColor.mainColor,
+                          ),
+                          SizedBox(height: 30.h),
+                          RichText(
+                              text: GeneralWidget.textSpan(children: [
+                            TextSpan(
+                                text: AppLocalizations.of(context)!
+                                    .doNotHaveAccount,
+                                style: TextStyle(
+                                    color: AppColor.textColor.withOpacity(0.5),
+                                    fontSize: AppSize.subTitle)),
+                            TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    AppRoutes.pushReplacementTo(
+                                        context, SignUp());
+                                  },
+                                text: AppLocalizations.of(context)!.signUp,
+                                style: TextStyle(
+                                    color: AppColor.mainColor,
+                                    fontSize: AppSize.subTitle)),
+                          ]))
+                        ],
+                      ),
                     ),
                   ),
                 ),

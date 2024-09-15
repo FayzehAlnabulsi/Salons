@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:salons/Widget/AppMessage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'BackEnd/provider_class.dart';
 import 'Screans/Account/Introduction.dart';
 import 'Widget/AppColor.dart';
@@ -38,22 +37,12 @@ class MyApp extends StatelessWidget {
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (_, __) => MaterialApp(
+                  locale: const Locale('en', ''),
                   debugShowCheckedModeBanner: false,
-                  // localizationsDelegates: const [
-                  //   GlobalMaterialLocalizations.delegate,
-                  //   GlobalWidgetsLocalizations.delegate,
-                  //   GlobalCupertinoLocalizations.delegate,
-                  // ],
-                  // supportedLocales: const [
-                  //   Locale('en', ''),
-                  //   Locale('ar', ''), // arabic, no country code
-                  // ],
-                  // initialRoute: Login.route,
-                  // routes: <String, WidgetBuilder>{
-                  //   Login.route: (_) => Login(),
-                  // },
-                  home: IntroductionScreen(),
-                  title: AppMessage.salons,
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  home: const IntroductionScreen(),
                   theme: ThemeData(
                       scaffoldBackgroundColor: AppColor.backGroundColor,
                       useMaterial3: true,
@@ -66,17 +55,6 @@ class MyApp extends StatelessWidget {
                           thickness: 0.5.spMin,
                           endIndent: 5.spMin,
                           indent: 5.spMin)),
-                  builder: (context, widget) {
-                    // ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-                    //   return MediaQuery(
-                    //     data: MediaQuery.of(context)
-                    //         .copyWith(textScaler: const TextScaler.linear(1.0)),
-                    //     child: const SizedBox(),
-                    //   );
-                    // };
-                    return Directionality(
-                        textDirection: TextDirection.ltr, child: widget!);
-                  },
                 )));
   }
 }

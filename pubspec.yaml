@@ -52,7 +52,7 @@ dependencies:
   coupon_uikit: 0.2.1
   textfield_search: 0.10.0
   crypto: 3.0.3
-  intl:
+  intl: any
   mailer: 6.1.0
   path_provider:
   open_file: ^3.3.2
@@ -76,6 +76,8 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   motion_tab_bar: ^2.0.4
   firebase_auth: ^4.16.0
+  flutter_localizations:
+    sdk: flutter
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,6 +95,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
+  generate: true
   assets:
      - assets/images/
      - assets/lottie/

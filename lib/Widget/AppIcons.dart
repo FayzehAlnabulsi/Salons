@@ -69,5 +69,6 @@ class AppIcons {
   static IconData note = FontAwesomeIcons.noteSticky;
   static IconData star = FontAwesomeIcons.star;
   static IconData sort = FontAwesomeIcons.sort;
-  static IconData city= FontAwesomeIcons.city;
+  static IconData city = FontAwesomeIcons.city;
+  static IconData home = FontAwesomeIcons.house;
 }

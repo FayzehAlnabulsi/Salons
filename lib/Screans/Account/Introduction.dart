@@ -6,7 +6,7 @@ import 'package:salons/Screans/Account/logIn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../Widget/AppColor.dart';
-import '../../Widget/AppMessage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../Widget/AppRoutes.dart';
 import '../../Widget/AppSize.dart';
 import '../../Widget/AppText.dart';
@@ -21,9 +21,9 @@ class IntroductionScreen extends StatefulWidget {
 
 class _IntroductionScreenState extends State<IntroductionScreen>
     with AutomaticKeepAliveClientMixin<IntroductionScreen> {
-  late List<LottieBuilder> images;
-  late List<String> title;
-  late List<String> subtitle;
+  late List<LottieBuilder> images = [];
+  late List<String> title = [];
+  late List<String> subtitle = [];
 
   final PageController pageController = PageController();
   int selectedIndex = 0;
@@ -44,19 +44,25 @@ class _IntroductionScreenState extends State<IntroductionScreen>
         currentIndex = pageController.page!.toInt();
       });
     });
-    images = [
-      Lottie.asset('assets/lottie/intro1.json', height: 350.h, width: 350.w),
-  //    Lottie.asset('assets/lottie/intro2.json', height: 350.h, width: 350.w),
-      Lottie.asset('assets/lottie/intro3.json', height: 350.h, width: 350.w),
-    ];
-    title = ['Self Care',
-      //'All you need',
-      'One Click'];
-    subtitle = [
-      'Take time for yourself and relax, all you need in one place',
-      //'All your self care needs in one place',
-      'book your appointment easy and fast'
-    ];
+    Future.delayed(const Duration(seconds: 1)).then((value) async {
+      setState(() {
+        images = [
+          Lottie.asset('assets/lottie/intro1.json',
+              height: 350.h, width: 350.w),
+          //    Lottie.asset('assets/lottie/intro2.json', height: 350.h, width: 350.w),
+          Lottie.asset('assets/lottie/intro3.json',
+              height: 350.h, width: 350.w),
+        ];
+        title = [
+          AppLocalizations.of(context)!.introFirstTitle,
+          AppLocalizations.of(context)!.introSecondTitle
+        ];
+        subtitle = [
+          AppLocalizations.of(context)!.introFirstSubTitle,
+          AppLocalizations.of(context)!.introSecondSubTitle
+        ];
+      });
+    });
   }
 
   @override
@@ -64,128 +70,133 @@ class _IntroductionScreenState extends State<IntroductionScreen>
     super.build(context);
     return Scaffold(
       backgroundColor: AppColor.beige,
-      body: Column(
-        children: [
-          Expanded(
-            flex: 6,
-            child: PageView.builder(
-              itemCount: images.length,
-              controller: pageController,
-              allowImplicitScrolling: true,
-              itemBuilder: (con, index) {
-                return Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: [
-    //color container==========================================================================================================================================================
-                    Container(
-                        height: GeneralWidget.height(context),
-                        width: GeneralWidget.width(context),
-                        decoration: BoxDecoration(color: AppColor.beige)),
-    //arc container==========================================================================================================================================================
-                    ClipPath(
-                      clipper: SimpleCurveClipper(),
-                      child: Container(
-                        alignment: AlignmentDirectional.bottomCenter,
-                        height: GeneralWidget.height(context) * 0.34,
-                        width: GeneralWidget.width(context),
-                        color: AppColor.subColor,
-                      ),
-                    ),
-    //image container==========================================================================================================================================================
-                    Positioned(
-                        top: index == 1 ? 250.h : 80.h,
-                        child: images[index]),
-
-    //title text==========================================================================================================================================================
-                    Positioned(
-                      top: index == 1 ? 150.h : 440.h,
-                      child: AppText(
-                        text: title[index],
-                        fontSize: AppSize.headSize - 5,
-                        color: AppColor.textColor,
-                        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                        align: TextAlign.center,
-                      ),
-                    ),
-    // //subTitle text==========================================================================================================================================================
-                    Positioned(
-                      top: index == 1 ? 190.h : 480.h,
-                      left: 20.w,
-                      right: 20.w,
-                      child: AppText(
-                        text: subtitle[index],
-                        fontSize: AppSize.titleSize,
-                        color: AppColor.textColor.withOpacity(0.8),
-                        align: TextAlign.center,
-                        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                      ),
-                    ),
-    // //dot indicator==========================================================================================================================================================
-                  ],
-                );
-              },
-            ),
-          ),
-    //===========================================================================================================
-          Container(
-            height: 60.h,
-            //color: amber,
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: images.isEmpty
+          ? SizedBox()
+          : Column(
               children: [
-                const SizedBox(),
+                Expanded(
+                  flex: 6,
+                  child: PageView.builder(
+                    itemCount: images.length,
+                    controller: pageController,
+                    allowImplicitScrolling: true,
+                    itemBuilder: (con, index) {
+                      return Stack(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        children: [
+                          //color container==========================================================================================================================================================
+                          Container(
+                              height: GeneralWidget.height(context),
+                              width: GeneralWidget.width(context),
+                              decoration: BoxDecoration(color: AppColor.beige)),
+                          //arc container==========================================================================================================================================================
+                          ClipPath(
+                            clipper: SimpleCurveClipper(),
+                            child: Container(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              height: GeneralWidget.height(context) * 0.34,
+                              width: GeneralWidget.width(context),
+                              color: AppColor.subColor,
+                            ),
+                          ),
+                          //image container==========================================================================================================================================================
+                          Positioned(
+                              top: index == 1 ? 250.h : 80.h,
+                              child: images[index]),
 
-                ///Dots
-                SmoothPageIndicator(
-                  controller: pageController,
-                  count: images.length,
-                  onDotClicked: (index) {
-                    pageController.animateToPage(index,
-                        duration: const Duration(milliseconds: 600),
-                        curve: Curves.easeIn);
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                  effect: JumpingDotEffect(
-                      spacing: 15.0,
-                      radius: 25.0.r,
-                      dotWidth: 10.0,
-                      dotHeight: 10.0,
-                      dotColor: Colors.grey,
-                      // verticalOffset: 15,
-                      activeDotColor: AppColor.mainColor),
-                ),
-
-                ///Start
-                GestureDetector(
-                    onTap: () async {
-                      SharedPreferences preferences =
-                          await SharedPreferences.getInstance();
-                      await preferences.setInt('initScreen', 1);
-                      AppRoutes.pushReplacementTo(context, Login());
+                          //title text==========================================================================================================================================================
+                          Positioned(
+                            top: index == 1 ? 150.h : 440.h,
+                            child: AppText(
+                              text: title[index],
+                              fontSize: AppSize.headSize - 5,
+                              color: AppColor.textColor,
+                              fontFamily:
+                                  GoogleFonts.playfairDisplay().fontFamily,
+                              align: TextAlign.center,
+                            ),
+                          ),
+                          // //subTitle text==========================================================================================================================================================
+                          Positioned(
+                            top: index == 1 ? 190.h : 480.h,
+                            left: 20.w,
+                            right: 20.w,
+                            child: AppText(
+                              text: subtitle[index],
+                              fontSize: AppSize.titleSize,
+                              color: AppColor.textColor.withOpacity(0.8),
+                              align: TextAlign.center,
+                              fontFamily:
+                                  GoogleFonts.playfairDisplay().fontFamily,
+                            ),
+                          ),
+                          // //dot indicator==========================================================================================================================================================
+                        ],
+                      );
                     },
-                    child: Visibility(
-                      visible:
-                          currentIndex < images.length - 1 ? false : true,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.h),
-                        child: AppText(
-                          text: AppMessage.logIn,
-                          fontSize: AppSize.labelSize,
-                          color: AppColor.textColor,
-                          align: TextAlign.center,
-                          fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-                        ),
+                  ),
+                ),
+                //===========================================================================================================
+                Container(
+                  height: 60.h,
+                  //color: amber,
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(),
+
+                      ///Dots
+                      SmoothPageIndicator(
+                        controller: pageController,
+                        count: images.length,
+                        onDotClicked: (index) {
+                          pageController.animateToPage(index,
+                              duration: const Duration(milliseconds: 600),
+                              curve: Curves.easeIn);
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                        effect: JumpingDotEffect(
+                            spacing: 15.0,
+                            radius: 25.0.r,
+                            dotWidth: 10.0,
+                            dotHeight: 10.0,
+                            dotColor: Colors.grey,
+                            // verticalOffset: 15,
+                            activeDotColor: AppColor.mainColor),
                       ),
-                    )),
+
+                      ///Start
+                      GestureDetector(
+                          onTap: () async {
+                            SharedPreferences preferences =
+                                await SharedPreferences.getInstance();
+                            await preferences.setInt('initScreen', 1);
+                            AppRoutes.pushReplacementTo(context, Login());
+                          },
+                          child: Visibility(
+                            visible:
+                                currentIndex < images.length - 1 ? false : true,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 10.h),
+                              child: AppText(
+                                text: AppLocalizations.of(context)!.logIn,
+                                fontSize: AppSize.labelSize,
+                                color: AppColor.textColor,
+                                align: TextAlign.center,
+                                fontFamily:
+                                    GoogleFonts.playfairDisplay().fontFamily,
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ],
-      ),
     );
   }
 

@@ -1,5 +1,3 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +5,6 @@ import 'package:salons/Screans/Account/logIn.dart';
 import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
 import 'package:salons/Widget/AppDialog.dart';
-import 'package:salons/Widget/AppMessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:salons/Widget/AppSize.dart';
 import 'package:salons/Widget/AppSnackBar.dart';
@@ -16,6 +13,7 @@ import 'package:salons/Widget/AppTextFields.dart';
 import 'package:salons/Widget/AppValidator.dart';
 import '../../Widget/AppRoutes.dart';
 import '../../Widget/GeneralWidget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({super.key});
@@ -25,9 +23,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final GlobalKey<FormState> _key = GlobalKey();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool isUser = true;
+
   @override
   void initState() {
     super.initState();
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
                                             !isUser ? 50.r : 0))),
                                 child: Center(
                                   child: AppText(
-                                    text: AppMessage.salons,
+                                    text: AppLocalizations.of(context)!.salon,
                                     fontSize: AppSize.secondaryTitle,
                                     color: !isUser
                                         ? AppColor.mainColor
@@ -123,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                                             !isUser ? 50.r : 0))),
                                 child: Center(
                                   child: AppText(
-                                    text: AppMessage.user,
+                                    text: AppLocalizations.of(context)!.user,
                                     fontSize: AppSize.secondaryTitle,
                                     color: isUser
                                         ? AppColor.mainColor
@@ -159,132 +159,152 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.r, top: 70.h),
-                                child: AppText(
-                                  text: AppMessage.createAccount,
-                                  fontSize: AppSize.secondaryTitle,
-                                  color: AppColor.textColor.withOpacity(0.7),
+                          Form(
+                            key: _key,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 5.r, top: 70.h),
+                                  child: AppText(
+                                    text: AppLocalizations.of(context)!
+                                        .createAccount,
+                                    fontSize: AppSize.secondaryTitle,
+                                    color: AppColor.textColor.withOpacity(0.7),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 30.h,
-                              ),
-                              AppTextFields(
-                                validator: (v) =>
-                                    AppValidator.validatorUserName(v),
-                                controller: TextEditingController(),
-                                hintText: AppMessage.userName,
-                                fillColor: AppColor.backGroundColor,
-                                borderColor: AppColor.subColor.withOpacity(0.6),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 10.h),
-                                child: AppTextFields(
-                                  validator: (v) =>
-                                      AppValidator.validatorEmail(v),
-                                  controller: email,
-                                  hintText: AppMessage.email,
-                                  fillColor: AppColor.backGroundColor,
-                                  borderColor:
-                                      AppColor.subColor.withOpacity(0.6),
+                                SizedBox(
+                                  height: 30.h,
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 10.h),
-                                child: AppTextFields(
+                                AppTextFields(
                                   validator: (v) =>
-                                      AppValidator.validatorPassword(v),
-                                  controller: password,
-                                  hintText: AppMessage.password,
-                                  fillColor: AppColor.backGroundColor,
-                                  obscureText: true,
-                                  borderColor:
-                                      AppColor.subColor.withOpacity(0.6),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 10.h),
-                                child: AppTextFields(
-                                  validator: (v) =>
-                                      AppValidator.validatorConfirmPassword(
-                                          v, password.text),
+                                      AppValidator.validatorUserName(
+                                          context, v),
                                   controller: TextEditingController(),
-                                  hintText: AppMessage.confirmPass,
-                                  obscureText: true,
+                                  hintText:
+                                      AppLocalizations.of(context)!.userName,
                                   fillColor: AppColor.backGroundColor,
                                   borderColor:
                                       AppColor.subColor.withOpacity(0.6),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 50.h,
-                              ),
-                              Builder(builder: (con) {
-                                return AppButtons(
-                                  onPressed: () async {
-                                    try {
-                                      AppDialog.showLoading(context: context);
-                                      await FirebaseAuth.instance
-                                          .createUserWithEmailAndPassword(
-                                        email: email.text,
-                                        password: password.text,
-                                      )
-                                          .then((result) {
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  child: AppTextFields(
+                                    validator: (v) =>
+                                        AppValidator.validatorEmail(context, v),
+                                    controller: email,
+                                    hintText:
+                                        AppLocalizations.of(context)!.email,
+                                    fillColor: AppColor.backGroundColor,
+                                    borderColor:
+                                        AppColor.subColor.withOpacity(0.6),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  child: AppTextFields(
+                                    validator: (v) =>
+                                        AppValidator.validatorPassword(
+                                            context, v),
+                                    controller: password,
+                                    hintText:
+                                        AppLocalizations.of(context)!.password,
+                                    fillColor: AppColor.backGroundColor,
+                                    obscureText: true,
+                                    borderColor:
+                                        AppColor.subColor.withOpacity(0.6),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  child: AppTextFields(
+                                    validator: (v) =>
+                                        AppValidator.validatorConfirmPassword(
+                                            context, v, password.text),
+                                    controller: TextEditingController(),
+                                    hintText: AppLocalizations.of(context)!
+                                        .confirmPass,
+                                    obscureText: true,
+                                    fillColor: AppColor.backGroundColor,
+                                    borderColor:
+                                        AppColor.subColor.withOpacity(0.6),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 50.h,
+                                ),
+                                Builder(builder: (con) {
+                                  return AppButtons(
+                                    onPressed: () async {
+                                      try {
+                                        _key.currentState!.validate()
+                                            ? {
+                                                AppDialog.showLoading(
+                                                    context: context),
+                                                await FirebaseAuth.instance
+                                                    .createUserWithEmailAndPassword(
+                                                  email: email.text,
+                                                  password: password.text,
+                                                )
+                                                    .then((result) {
+                                                  Navigator.pop(context);
+                                                  AppSnackBar.showInSnackBar(
+                                                      context: con,
+                                                      message:
+                                                          'Account created successfully',
+                                                      isSuccessful: true);
+                                                  AppRoutes.pushReplacementTo(
+                                                      context, Login());
+                                                }),
+                                              }
+                                            : null;
+                                      } on FirebaseAuthException catch (e) {
                                         Navigator.pop(context);
-                                        AppSnackBar.showInSnackBar(
-                                            context: con,
-                                            message:
-                                                'Account created successfully',
-                                            isSuccessful: true);
-                                        AppRoutes.pushReplacementTo(
-                                            context, Login());
-                                      });
-                                    } on FirebaseAuthException catch (e) {
-                                      Navigator.pop(context);
-                                      if (e.code == 'weak-password') {
-                                        AppSnackBar.showInSnackBar(
-                                            context: context,
-                                            message:
-                                                'The password provided is too weak.',
-                                            isSuccessful: false);
-                                        print(
-                                            'The password provided is too weak.');
-                                      } else if (e.code ==
-                                          'email-already-in-use') {
-                                        AppSnackBar.showInSnackBar(
-                                            context: context,
-                                            message:
-                                                'The account already exists for that email.',
-                                            isSuccessful: false);
-                                        print(
-                                            'The account already exists for that email.');
+                                        if (e.code == 'weak-password') {
+                                          AppSnackBar.showInSnackBar(
+                                              context: context,
+                                              message:
+                                                  'The password provided is too weak.',
+                                              isSuccessful: false);
+                                          debugPrint(
+                                              'The password provided is too weak.');
+                                        } else if (e.code ==
+                                            'email-already-in-use') {
+                                          AppSnackBar.showInSnackBar(
+                                              context: context,
+                                              message:
+                                                  'The account already exists for that email.',
+                                              isSuccessful: false);
+                                          debugPrint(
+                                              'The account already exists for that email.');
+                                        }
+                                      } catch (e) {
+                                        _key.currentState!.validate()
+                                            ? AppSnackBar.showInSnackBar(
+                                                context: context,
+                                                message: '$e',
+                                                isSuccessful: false)
+                                            : null;
+                                        debugPrint(e.toString());
                                       }
-                                    } catch (e) {
-                                      AppSnackBar.showInSnackBar(
-                                          context: context,
-                                          message: '$e',
-                                          isSuccessful: false);
-                                      print(e);
-                                    }
-                                  },
-                                  text: AppMessage.signUp,
-                                  fontWeight: FontWeight.bold,
-                                  backgroundColor: AppColor.mainColor,
-                                );
-                              }),
-                            ],
+                                    },
+                                    text: AppLocalizations.of(context)!.signUp,
+                                    fontWeight: FontWeight.bold,
+                                    backgroundColor: AppColor.mainColor,
+                                  );
+                                }),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 20.h),
                             child: RichText(
                                 text: GeneralWidget.textSpan(children: [
                               TextSpan(
-                                  text: AppMessage.youHaveAccount,
+                                  text: AppLocalizations.of(context)!
+                                      .youHaveAccount,
                                   style: TextStyle(
                                       color:
                                           AppColor.textColor.withOpacity(0.5),
@@ -295,7 +315,8 @@ class _SignUpState extends State<SignUp> {
                                       AppRoutes.pushReplacementTo(
                                           context, Login());
                                     },
-                                  text: '  ${AppMessage.logIn}',
+                                  text:
+                                      '  ${AppLocalizations.of(context)!.logIn}',
                                   style: TextStyle(
                                       color: AppColor.mainColor,
                                       fontSize: AppSize.subTitle)),

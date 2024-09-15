@@ -6,6 +6,7 @@ import 'dart:async';
 import 'AppColor.dart';
 import 'AppMessage.dart';
 import 'AppSize.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppAsyncTextFields extends StatelessWidget {
   final Future<bool> Function(String?) validator;
@@ -74,7 +75,7 @@ class AppAsyncTextFields extends StatelessWidget {
       validator: validator,
       controller: controller,
       hintText: hintText,
-      valueIsEmptyMessage: AppMessage.mandatoryTx,
+      valueIsEmptyMessage: AppLocalizations.of(context)!.mandatoryTx,
       valueIsInvalidMessage: invalidMessage,
       isValidatingMessage: AppMessage.validatingUrl,
       validationDebounce: const Duration(milliseconds: 200),

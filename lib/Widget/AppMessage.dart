@@ -42,46 +42,6 @@ class AppMessage {
       };
 //====================================================================
 
-  static String salons = 'salons';
-  static String salonsAr = 'صالونات';
-  static String logInAccount = 'Login to your account';
-  static String logInAccountAr = 'تسجيل الدخول';
-  static String userName = 'userName';
-  static String userNameAr = 'اسم المستخدم';
-  static String password = 'password';
-  static String passwordAr = 'كلمة المرور';
-  static String rememberMe = 'remember me';
-  static String rememberMeAr = 'تذكرني';
-  static String forgotPassword = 'forgot password?';
-  static String forgotPasswordAr = 'نسيت كلمة المرور؟';
-  static String logIn = 'Login';
-  static String logInAr = 'تسجيل الدخول';
-  static String doNotHaveAccount = 'you dont have account?';
-  static String doNotHaveAccountAr = 'ليس لديك حساب؟';
-  static String signUp = '  Sign Up';
-  static String signUpAr = 'انشئ حساب  ';
-  static const String resetPass = 'reset password';
-  static const String resetPassAr = 'اعادة تعيين كلمة المرور';
-  static String send = 'send';
-  static String sendAr = 'ارسال';
-  static String mandatoryTx = 'mandatory field';
-  static String mandatoryTxAr = 'حقل اجباري';
-  static String invalidEmail = "invalid email";
-  static String invalidEmailAr = "البريد الالكتروني غير صالح";
-  static String noMatch = 'password and confirmPassword do not match';
-  static String noMatchAr = 'كلمة المرور و تأكيد كلمة المرور لا تتطابق';
-  static String invalidPassword =
-      'password should contain at least one  uppercase, lowercase, number and symbol';
-  static String invalidPasswordAr =
-      'يجب ان تحتوي كلمة المرور على حرف كبير, صغير, رقم و رمز';
-  static String invalidPasswordLength =
-      'password length should be at least 8 characters';
-  static String invalidPasswordLengthAr =
-      'يجب أن يكون طول كلمة المرور على الأقل 8 حروفٍ/حرفًا';
-  static String englishOnlyValidation = 'should be in english only';
-  static String englishOnlyValidationAr = 'يجب ان يكون باللغة الانجليزية';
-  static String noLessThan4 = "length should be at least 4 characters";
-  static String noLessThan4Ar = "الحد الادنى 4 خانات";
   //======================================================================================
   static String rule = 'مستخدميين النظام';
   static String paymentGetaway = 'بوابات الدفع';
@@ -175,7 +135,6 @@ class AppMessage {
   static String complete = 'مكتمل';
   static String notComplete = 'غير مكتمل';
   static String contractFile = 'ملف العقد';
-  static String profile = 'الملف الشخصي';
   static String email = 'email';
   static String emailAr = 'البريد الالكتروني';
   static String region = 'المنطقة';
@@ -321,8 +280,6 @@ class AppMessage {
   static const String morning = 'صباحا';
   static const String noon = 'مساءا';
 
-  static const String confirmPassAr = 'تاكيد كلمة المرور';
-  static const String confirmPass = 'confirm password';
   static const String changePassword = "تغير كلمة المرور";
   static const String addLink = 'اضافة رابط';
   static const String sharingType = "نوع المشاركة";
@@ -354,10 +311,5 @@ class AppMessage {
   static String quickAuthContent =
       "هل تريد تفعيل تسجيل الدخول السريع ${Platform.isAndroid ? 'باستخدام البصمة' : Platform.isIOS ? 'باستخدام بصمة الوجه' : ''}";
   static String other = "اخرى";
-  static String currentPassword = 'كلمة المرور الحالية';
-  static String accountInfo = 'معلومات الحساب';
-  static String youHaveAccount = 'you have account?';
-  static String youHaveAccountAr = 'لديك حساب ؟';
-  static String createAccount = 'Create account';
-  static String createAccountAr = 'انشء حساب';
+
 }

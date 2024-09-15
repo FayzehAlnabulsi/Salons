@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'AppMessage.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_pw_validator/Resource/Strings.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 //
 class PasswordValidatorStrings implements FlutterPwValidatorStrings {
   @override
@@ -21,18 +21,18 @@ class PasswordValidatorStrings implements FlutterPwValidatorStrings {
 
 class AppValidator {
 //valid empty data============================================================
-  static String? validatorEmpty(v) {
+  static String? validatorEmpty(context, v) {
     if (v == null || v.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else {
       return null;
     }
   }
 
   //valid empty and not zero ============================================================
-  static String? validatorEmptyAndNotZero(v) {
+  static String? validatorEmptyAndNotZero(context, v) {
     if (v == null || v.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     if (v == '0') {
       return AppMessage.notZero;
@@ -42,25 +42,25 @@ class AppValidator {
   }
 
   //valid userName data============================================================
-  static String? validatorUserName(name) {
+  static String? validatorUserName(context, name) {
     final regExp = RegExp(r"[a-zA-Z@.-/#]");
     if (name.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (regExp.hasMatch(name) == false) {
-      return AppMessage.englishOnlyValidation;
+      return AppLocalizations.of(context)!.englishOnlyValidation;
     } else if (name.length < 4) {
-      return AppMessage.noLessThan4;
+      return AppLocalizations.of(context)!.noLessThan4;
     } else {
       return null;
     }
   }
 
 //valid name data============================================================
-  static String? validatorName(name) {
+  static String? validatorName(context, name) {
     String pattern = r'^[\u0621-\u064A\040]+$';
     RegExp regExp = RegExp(pattern);
     if (name == null || name.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else {
       // if (regExp.hasMatch(name) == false) {
       //   return AppMessage.arabicOnlyValidation;
@@ -72,11 +72,11 @@ class AppValidator {
   }
 
   //valid full name data============================================================
-  static String? validatorFullName(name) {
+  static String? validatorFullName(context, name) {
     String pattern = r'^[\u0621-\u064A\040]+$';
     RegExp regExp = RegExp(pattern);
     if (name == null || name.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (regExp.hasMatch(name) == false) {
       return AppMessage.arabicOnlyValidation;
     } else {
@@ -87,9 +87,9 @@ class AppValidator {
   }
 
 //valid length data============================================================
-  static String? validatorLength(v, length) {
+  static String? validatorLength(context, v, length) {
     if (v.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     if (v.length > length) {
       return 'الحد الاقصى المسموح به هو $length خانات';
@@ -98,49 +98,49 @@ class AppValidator {
   }
 
   //valid email=============================================================
-  static String? validatorEmail(email) {
+  static String? validatorEmail(context, email) {
     if (email.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     if (EmailValidator.validate(email.trim()) == false) {
-      return AppMessage.invalidEmail;
+      return AppLocalizations.of(context)!.invalidEmail;
     }
     return null;
   }
 
   //valid Password data============================================================
-  static String? validatorConfirmPassword(confirmPassword, password) {
-    if (confirmPassword.isEmpty) {
-      return AppMessage.mandatoryTx;
+  static String? validatorConfirmPassword(context, confirmPassword, password) {
+    if (confirmPassword == null || confirmPassword!.trim().isEmpty) {
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     if (confirmPassword != password) {
-      return AppMessage.noMatch;
+      return AppLocalizations.of(context)!.noMatch;
     }
     return null;
   }
 
   //validate password ==========================================================
-  static String? validatorPassword(String? value) {
+  static String? validatorPassword(context, String? value) {
     String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~-_]).{8,}$';
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
     RegExp regExp = RegExp(pattern);
-    if (value != null || value!.trim().isEmpty) {
-      return AppMessage.mandatoryTx;
+    if (value == null || value!.trim().isEmpty) {
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (value.length < 8) {
-      return AppMessage.invalidPasswordLength;
+      return AppLocalizations.of(context)!.invalidPasswordLength;
     } else if (regExp.hasMatch(value)) {
       return null;
     } else {
-      return AppMessage.invalidPassword;
+      return AppLocalizations.of(context)!.invalidPassword;
     }
     ;
   }
 
 //valid Phone data============================================================
-  static String? validatorPhone(phone) {
+  static String? validatorPhone(context, phone) {
     final phoneRegExp = RegExp(r"^\s*[0-9]{10}$");
     if (phone.trim().isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     // if (phoneRegExp.hasMatch(phone) == false) {
     //   return AppMessage.invalidPhone;
@@ -158,10 +158,10 @@ class AppValidator {
   }
 
   //valid Phone general============================================================
-  static String? validatorPhoneGeneral(phone) {
+  static String? validatorPhoneGeneral(context, phone) {
     final phoneRegExp = RegExp(r"^\s*[0-9]{10}$");
     if (phone.trim().isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     }
     if (phone.startsWith('0')) {
       return AppMessage.startWithZero;
@@ -173,9 +173,9 @@ class AppValidator {
   }
 
   // description ============================================================
-  static String? validatorDescription(desc) {
+  static String? validatorDescription(context, desc) {
     if (desc.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (desc.length > 200) {
       return AppMessage.descriptionLength;
     } else if (desc.length < 80) {
@@ -186,9 +186,9 @@ class AppValidator {
   }
 
   // description ============================================================
-  static String? validatorGiftDescription(desc) {
+  static String? validatorGiftDescription(context, desc) {
     if (desc.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (desc.length > 200) {
       return AppMessage.descriptionLength;
     } else if (desc.length < 40) {
@@ -199,9 +199,9 @@ class AppValidator {
   }
 
   // subject ============================================================
-  static String? validatorSubject(v) {
+  static String? validatorSubject(context, v) {
     if (v.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (v.length > 25) {
       return AppMessage.subjectLength;
     } else {
@@ -210,10 +210,10 @@ class AppValidator {
   }
 
   //valid userName data============================================================
-  static String? validatorCouponName(name) {
+  static String? validatorCouponName(context, name) {
     final regExp = RegExp(r"[a-zA-Z]");
     if (name.isEmpty) {
-      return AppMessage.mandatoryTx;
+      return AppLocalizations.of(context)!.mandatoryTx;
     } else if (name.startsWith('0') ||
         name.startsWith('1') ||
         name.startsWith('2') ||
@@ -228,7 +228,7 @@ class AppValidator {
     } else if (regExp.hasMatch(name) == false) {
       return AppMessage.englishOnlyCoupon;
     } else if (name.length < 4) {
-      return AppMessage.noLessThan4;
+      return AppLocalizations.of(context)!.noLessThan4;
     } else {
       return null;
     }
