@@ -22,8 +22,35 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  static Locale? getLocale(BuildContext context) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    return  state?.getLocale();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  getLocale() {
+    return _locale;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +64,7 @@ class MyApp extends StatelessWidget {
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (_, __) => MaterialApp(
-                  locale: const Locale('en', ''),
+                  locale: _locale,
                   debugShowCheckedModeBanner: false,
                   localizationsDelegates:
                       AppLocalizations.localizationsDelegates,

@@ -17,6 +17,7 @@ import 'package:salons/Widget/AppSnackBar.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:salons/Widget/AppTextFields.dart';
 import 'package:salons/Widget/AppValidator.dart';
+import 'package:salons/main.dart';
 import '../../Widget/GeneralWidget.dart';
 
 class Login extends StatefulWidget {
@@ -260,6 +261,7 @@ class _LoginState extends State<Login> {
                             TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
+                                  MyApp.setLocale(context, const Locale('ar'));
                                     AppRoutes.pushReplacementTo(
                                         context, SignUp());
                                   },

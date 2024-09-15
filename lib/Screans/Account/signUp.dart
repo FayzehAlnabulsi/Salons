@@ -11,6 +11,7 @@ import 'package:salons/Widget/AppSnackBar.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:salons/Widget/AppTextFields.dart';
 import 'package:salons/Widget/AppValidator.dart';
+import 'package:salons/main.dart';
 import '../../Widget/AppRoutes.dart';
 import '../../Widget/GeneralWidget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -88,8 +89,13 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.only(
                                         bottomRight:
                                             Radius.circular(isUser ? 50.r : 0),
-                                        topRight: Radius.circular(
-                                            !isUser ? 50.r : 0))),
+                                        topRight: MyApp.getLocale(context)
+                                                    ?.countryCode ==
+                                                'ar'
+                                            ? Radius.circular(
+                                                !isUser ? 0.r : 50.r)
+                                            : Radius.circular(
+                                                !isUser ? 50.r : 0))),
                                 child: Center(
                                   child: AppText(
                                     text: AppLocalizations.of(context)!.salon,
