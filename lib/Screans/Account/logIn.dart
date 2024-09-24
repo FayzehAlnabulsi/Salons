@@ -261,7 +261,7 @@ class _LoginState extends State<Login> {
                             TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                  MyApp.setLocale(context, const Locale('ar'));
+                                  //MyApp.setLocale(context, const Locale('ar'));
                                     AppRoutes.pushReplacementTo(
                                         context, SignUp());
                                   },

@@ -28,12 +28,12 @@ class AppMotionNavBar extends StatelessWidget {
         AppLocalizations.of(context)!.profile
       ],
       icons: [
-        AppIcons.ordersManageIcons,
+        AppIcons.appointments,
         AppIcons.home,
         AppIcons.usersDataIcon,
       ],
       tabSize: 50,
-      tabBarHeight: 50.h,
+      tabBarHeight: 45.h,
       textStyle: TextStyle(
         fontSize: 12.spMin,
         color: AppColor.textColor,

@@ -5,7 +5,7 @@ class AppColor {
   static Color subColor = const Color(0xffE3D5CA);
   static Color lightSubColor = const Color(0xffefe3da);
   static Color secondaryColor = const Color(0xffD6CCC2);
-  static Color lightGreenColor = const Color(0xffEDEDE9);
+  static Color lightGreenColor = const Color(0xff79795e);
   static Color beige = const Color(0xFFF5EBE0);
   static Color backGroundColor = const Color(0xFFF8F4EF);
   static Color havanaPink = const Color(0xffe6beae);

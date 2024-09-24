@@ -46,9 +46,9 @@ dependencies:
   sprung: ^3.0.1
   calendar_date_picker2: ^0.5.3
   flutter_localization: ^0.1.14
-  firebase_messaging: ^14.7.10
+  firebase_messaging: ^15.1.2
   flutter_local_notifications: ^16.3.0
-  firebase_core: ^2.24.2
+  firebase_core: 3.5.0
   coupon_uikit: 0.2.1
   textfield_search: 0.10.0
   crypto: 3.0.3
@@ -75,7 +75,7 @@ dependencies:
   open_app_file: ^4.0.2
   smooth_page_indicator: ^1.2.0+3
   motion_tab_bar: ^2.0.4
-  firebase_auth: ^4.16.0
+  firebase_auth: ^5.3.0
   flutter_localizations:
     sdk: flutter
 dev_dependencies:

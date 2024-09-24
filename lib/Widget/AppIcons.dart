@@ -6,7 +6,7 @@ class AppIcons {
   static IconData documentationIcon = FontAwesomeIcons.fileCircleCheck;
   static IconData requestIcon = FontAwesomeIcons.boxArchive;
   static IconData manageIcons = FontAwesomeIcons.usersGear;
-  static IconData ordersManageIcons = FontAwesomeIcons.boxesStacked;
+  static IconData appointments = Icons.add_task;
   static IconData couponsIcon = FontAwesomeIcons.tags;
   static IconData contractIcon = FontAwesomeIcons.fileContract;
   static IconData livesIcons = FontAwesomeIcons.towerBroadcast;

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'BackEnd/provider_class.dart';
 import 'Screans/Account/Introduction.dart';
+import 'Screans/Home/main_screan.dart';
 import 'Widget/AppColor.dart';
 
 Future<void> main() async {
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                   localizationsDelegates:
                       AppLocalizations.localizationsDelegates,
                   supportedLocales: AppLocalizations.supportedLocales,
-                  home: const IntroductionScreen(),
+                  home:  MainScreen(),
                   theme: ThemeData(
                       scaffoldBackgroundColor: AppColor.backGroundColor,
                       useMaterial3: true,

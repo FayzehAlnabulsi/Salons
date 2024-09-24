@@ -4,6 +4,10 @@ import '../../Widget/GeneralWidget.dart';
 import '../../Widget/AppMotionNavBar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../appointments/appointments.dart';
+import '../profile/profile.dart';
+import 'home.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -51,16 +55,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
               const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
           // controller: _tabController,
           controller: _motionTabBarController,
-          children: <Widget>[
-            Center(
-              child: Text(AppLocalizations.of(context)!.appointments),
-            ),
-            Center(
-              child: Text(AppLocalizations.of(context)!.home),
-            ),
-            Center(
-              child: Text(AppLocalizations.of(context)!.profile),
-            ),
+          children: const <Widget>[
+            Appointments(),
+            Home(),
+            Profile(),
           ],
         ),
       ),
