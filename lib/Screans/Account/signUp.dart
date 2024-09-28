@@ -44,113 +44,119 @@ class _SignUpState extends State<SignUp> {
         width: GeneralWidget.width(context),
         child: Stack(
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  height: GeneralWidget.height(context) / 2,
-                  width: GeneralWidget.width(context) / 2,
-                  color:
-                      !isUser ? AppColor.mainColor : AppColor.backGroundColor,
-                  margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
-                ),
-                Container(
-                  height: GeneralWidget.height(context) / 2,
-                  width: GeneralWidget.width(context) / 2,
-                  color: isUser ? AppColor.mainColor : AppColor.backGroundColor,
-                  margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
-                ),
-              ],
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    height: GeneralWidget.height(context) / 2,
+                    width: GeneralWidget.width(context) / 2,
+                    color:
+                        !isUser ? AppColor.mainColor : AppColor.backGroundColor,
+                    margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
+                  ),
+                  Container(
+                    height: GeneralWidget.height(context) / 2,
+                    width: GeneralWidget.width(context) / 2,
+                    color: isUser ? AppColor.mainColor : AppColor.backGroundColor,
+                    margin: EdgeInsets.only(bottom: 0.h, top: 0.h),
+                  ),
+                ],
+              ),
             ),
             Column(
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      height: GeneralWidget.height(context) / 7,
-                      width: GeneralWidget.width(context),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Flexible(
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isUser = false;
-                                });
-                              },
-                              child: Container(
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: !isUser
-                                        ? AppColor.backGroundColor
-                                        : AppColor.mainColor,
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight:
-                                            Radius.circular(isUser ? 50.r : 0),
-                                        topRight: MyApp.getLocale(context)
-                                                    ?.countryCode ==
-                                                'ar'
-                                            ? Radius.circular(
-                                                !isUser ? 0.r : 50.r)
-                                            : Radius.circular(
-                                                !isUser ? 50.r : 0))),
-                                child: Center(
-                                  child: AppText(
-                                    text: AppLocalizations.of(context)!.salon,
-                                    fontSize: AppSize.secondaryTitle,
-                                    color: !isUser
-                                        ? AppColor.mainColor
-                                        : AppColor.white,
-                                    fontWeight: FontWeight.bold,
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        height: GeneralWidget.height(context) / 7,
+                        width: GeneralWidget.width(context),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    isUser = false;
+                                  });
+                                },
+                                child: Container(
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: !isUser
+                                          ? AppColor.backGroundColor
+                                          : AppColor.mainColor,
+                                      borderRadius: BorderRadius.only(
+                                          bottomRight:
+                                              Radius.circular(isUser ? 50.r : 0),
+                                          topRight: MyApp.getLocale(context)
+                                                      ?.countryCode ==
+                                                  'ar'
+                                              ? Radius.circular(
+                                                  !isUser ? 0.r : 50.r)
+                                              : Radius.circular(
+                                                  !isUser ? 50.r : 0))),
+                                  child: Center(
+                                    child: AppText(
+                                      text: AppLocalizations.of(context)!.salon,
+                                      fontSize: AppSize.secondaryTitle,
+                                      color: !isUser
+                                          ? AppColor.mainColor
+                                          : AppColor.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Flexible(
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isUser = true;
-                                });
-                              },
-                              child: Container(
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: isUser
-                                        ? AppColor.backGroundColor
-                                        : AppColor.mainColor,
-                                    borderRadius: BorderRadius.only(
-                                        topLeft:
-                                            Radius.circular(isUser ? 50.r : 0),
-                                        bottomLeft: Radius.circular(
-                                            !isUser ? 50.r : 0))),
-                                child: Center(
-                                  child: AppText(
-                                    text: AppLocalizations.of(context)!.user,
-                                    fontSize: AppSize.secondaryTitle,
-                                    color: isUser
-                                        ? AppColor.mainColor
-                                        : AppColor.white,
-                                    fontWeight: FontWeight.bold,
+                            Flexible(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    isUser = true;
+                                  });
+                                },
+                                child: Container(
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: isUser
+                                          ? AppColor.backGroundColor
+                                          : AppColor.mainColor,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft:
+                                              Radius.circular(isUser ? 50.r : 0),
+                                          bottomLeft: Radius.circular(
+                                              !isUser ? 50.r : 0))),
+                                  child: Center(
+                                    child: AppText(
+                                      text: AppLocalizations.of(context)!.user,
+                                      fontSize: AppSize.secondaryTitle,
+                                      color: isUser
+                                          ? AppColor.mainColor
+                                          : AppColor.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Container(
-                  height: GeneralWidget.height(context) / 1.17,
+                  height: GeneralWidget.height(context) / 1.167,
                   width: GeneralWidget.width(context),
                   color: AppColor.mainColor,
                   child: Container(
-                    height: GeneralWidget.height(context) / 1.17,
+                    height: GeneralWidget.height(context) / 1.167,
                     width: GeneralWidget.width(context),
                     decoration: BoxDecoration(
                         color: AppColor.backGroundColor,

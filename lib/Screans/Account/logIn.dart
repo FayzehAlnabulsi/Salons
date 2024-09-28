@@ -10,6 +10,7 @@ import 'package:salons/Widget/AppButtons.dart';
 import 'package:salons/Widget/AppColor.dart';
 import 'package:salons/Widget/AppDialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:salons/Widget/AppDropList.dart';
 import 'package:salons/Widget/AppPath.dart';
 import 'package:salons/Widget/AppRoutes.dart';
 import 'package:salons/Widget/AppSize.dart';
@@ -106,7 +107,7 @@ class _LoginState extends State<Login> {
                         height: 200.h,
                         width: 300.w,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Container(
@@ -261,7 +262,6 @@ class _LoginState extends State<Login> {
                             TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                  //MyApp.setLocale(context, const Locale('ar'));
                                     AppRoutes.pushReplacementTo(
                                         context, SignUp());
                                   },
@@ -277,6 +277,63 @@ class _LoginState extends State<Login> {
                 ),
               ],
             ),
+            Align(
+                alignment: Alignment.topRight,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 35.h, right: 15.w),
+                    child: Transform.translate(
+                      offset: Offset(30.w, 0),
+                      child: DropdownMenu(
+                        width: 80.w,
+                        expandedInsets: EdgeInsets.only(right: 30.w),
+                        leadingIcon: Icon(
+                          Icons.language,
+                          color: AppColor.lightGreenColor,
+                        ),
+                        hintText: '',
+                        helperText: '',
+                        menuStyle: MenuStyle(
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                          const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                        )),
+                        inputDecorationTheme: const InputDecorationTheme(
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none)),
+                        textStyle: TextStyle(
+                            color: AppColor.mainColor,
+                            locale: MyApp.getLocale(context)),
+                        label: const Text(''),
+                        trailingIcon: Icon(
+                          Icons.arrow_drop_down,
+                          color: AppColor.mainColor,
+                        ),
+                        selectedTrailingIcon: Icon(
+                          Icons.arrow_drop_down,
+                          color: AppColor.mainColor,
+                        ),
+                        onSelected: (language) {
+                          MyApp.setLocale(context, Locale(language!));
+                        },
+                        dropdownMenuEntries: const [
+                          DropdownMenuEntry(
+                              value: 'en',
+                              label: 'en',
+                              style: ButtonStyle(
+                                  alignment: Alignment.centerRight)),
+                          DropdownMenuEntry(
+                              value: 'ar',
+                              label: 'ar',
+                              style:
+                                  ButtonStyle(alignment: Alignment.centerRight))
+                        ],
+                      ),
+                    ),
+                  ),
+                ))
           ],
         ),
       ),
