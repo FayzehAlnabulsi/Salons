@@ -41,6 +41,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             color: AppColor.white,
             size: 25.r,
           ),
+          leadingWidth: 120.w,
           centerTitle: centerTitle ?? true,
           surfaceTintColor: AppColor.white,
           backgroundColor: showBar == false

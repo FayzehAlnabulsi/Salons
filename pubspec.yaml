@@ -76,6 +76,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   motion_tab_bar: ^2.0.4
   firebase_auth: ^5.3.0
+  masonry_list_view_grid: ^1.0.1
   flutter_localizations:
     sdk: flutter
 dev_dependencies:
