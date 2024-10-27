@@ -45,7 +45,7 @@ class AppIcons {
   static IconData send = Icons.send;
   static IconData x = FontAwesomeIcons.x;
   static IconData menuDots = FontAwesomeIcons.ellipsisVertical;
-  static IconData chat = FontAwesomeIcons.message;
+  static IconData chat = FontAwesomeIcons.comment;
   static IconData email = FontAwesomeIcons.envelope;
   static IconData whatsapp = FontAwesomeIcons.whatsapp;
   static IconData warn = FontAwesomeIcons.triangleExclamation;

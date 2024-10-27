@@ -43,17 +43,25 @@ class _HomeState extends State<Home> {
         elevation: 1,
         leading: Image.asset(AppPath.logo),
         backgroundColor: AppColor.backGroundColor,
-        actions: [Padding(
-          padding: EdgeInsets.only(right: 10.w),
-          child: IconButton(onPressed: () {}, icon: Icon(AppIcons.search, color: AppColor.mainColor,)),
-        )],
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 10.w),
+            child: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  AppIcons.search,
+                  color: AppColor.mainColor,
+                  size: AppSize.iconsSize,
+                )),
+          )
+        ],
       ),
       body: Container(
         alignment: AlignmentDirectional.center,
         height: GeneralWidget.height(context),
         width: GeneralWidget.width(context),
         padding: EdgeInsets.zero,
-        child: Column(
+        child: ListView(
           children: [
             SizedBox(
               height: 130.h,
@@ -93,7 +101,9 @@ class _HomeState extends State<Home> {
                                 ))
                           ],
                         ),
-                        SizedBox(height: 5.h,),
+                        SizedBox(
+                          height: 5.h,
+                        ),
                         AppText(text: 'salons', fontSize: AppSize.subTitle)
                       ],
                     ),
@@ -135,20 +145,22 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 10.h,
             ),
-            Flexible(
+            SizedBox(
+              height: GeneralWidget.height(context) * (50 / 5.8),
               child: MasonryListViewGrid(
                 column: 2,
                 crossAxisGap: 3,
                 mainAxisGap: 3,
+                scrollToTopBgColor: AppColor.havanaPink,
                 padding: const EdgeInsets.symmetric(horizontal: 3.0),
                 children: List.generate(
-                  100,
+                  50,
                   (index) => Container(
                     decoration: BoxDecoration(
                         color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
                             .withOpacity(0.5),
                         borderRadius: BorderRadius.circular(10.r)),
-                    height: (150 + (index % 3 == 0 ? 100 : 50)).toDouble(),
+                    height: (150 + (index % 3 == 0 ? 250 : 150)).toDouble(),
                     child: Center(
                       child: Text('Child ${index + 1}'),
                     ),

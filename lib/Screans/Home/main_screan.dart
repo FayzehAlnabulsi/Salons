@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+import 'package:salons/Screans/chat/chatList.dart';
+import 'package:salons/Screans/notifications/notificationList.dart';
 import '../../Widget/GeneralWidget.dart';
 import '../../Widget/AppMotionNavBar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,8 +24,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
-      length: 3,
+      initialIndex: 2,
+      length: 5,
       vsync: this,
     );
   }
@@ -57,7 +59,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           controller: _motionTabBarController,
           children: const <Widget>[
             Appointments(),
+            NotificationList(),
             Home(),
+            ChatList(),
             Profile(),
           ],
         ),

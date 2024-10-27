@@ -32,5 +32,7 @@
    "accountInfo" : "accountInfo",
    "resetPasswordDescription" : "A oneTime use password will be sent to your email, you can set new password after signing in",
    "confirmPass" : "confirm password",
-   "user" : "user"
+   "user" : "user",
+   "chat" : "chat",
+   "notification" : "notification"
 }
