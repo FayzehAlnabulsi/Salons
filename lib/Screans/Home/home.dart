@@ -26,6 +26,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   MotionTabBarController? _motionTabBarController;
 
+  int page = 1;
   @override
   void initState() {
     super.initState();
@@ -80,13 +81,13 @@ class _HomeState extends State<Home> {
                           alignment: Alignment.bottomRight,
                           children: [
                             CircleAvatar(
-                              radius: 35.r,
+                              radius: 38.r,
                               backgroundColor: AppColor.havanaPink,
                               child: CircleAvatar(
-                                radius: 32.r,
+                                radius: 35.r,
                                 backgroundColor: AppColor.backGroundColor,
                                 child: CircleAvatar(
-                                  radius: 29.r,
+                                  radius: 32.r,
                                   backgroundColor: AppColor.secondaryColor,
                                 ),
                               ),
@@ -116,64 +117,71 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(
-              height: 140.h,
+              height: 170.h,
+              width: double.infinity,
               child: Stack(
                 children: [
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
-                      child: Container(
-                        height: 120.h,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(left: 80.w, bottom: 10.h),
-                        decoration: BoxDecoration(
-                          color: AppColor.havanaPink,
-                          borderRadius: BorderRadius.circular(10.r),
-                          // image: DecorationImage(
-                          //   image: Image.network(
-                          //           'https://www.shutterstock.com/image-photo/beauty-background-facial-cosmetic-products-260nw-1698488116.jpg')
-                          //       .image,
-                          //   fit: BoxFit.cover,
-                          // ),
-                        ),
-                        child: SizedBox(
-                          width: 230.w,
-                          child: AppText(
-                            text:
-                                'Beauty begins when you decide to be yourself',
-                            fontSize: AppSize.secondaryTitle,
-                            color: AppColor.white,
-                            align: TextAlign.center,
-                            fontFamily:
-                                GoogleFonts.playfairDisplay().fontFamily,
-                          ),
-                        ),
-                      ),
+                    child: SizedBox(
+                      height: 150.spMin,
+                      width: double.infinity,
+                      child: ListView.builder(
+                          itemCount: 2,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (_, index) {
+                            return Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.only(
+                                      left: 120.w, bottom: 10.h),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.havanaPink,
+                                    borderRadius: BorderRadius.circular(10.r),
+                                  ),
+                                  child: SizedBox(
+                                    width: 230.w,
+                                    child: AppText(
+                                      text: index + 1 == 1
+                                          ? 'Beauty begins when you decide to be yourself'
+                                          : 'Be your own kind of beautiful',
+                                      fontSize: AppSize.secondaryTitle - 4,
+                                      color: AppColor.white,
+                                      align: TextAlign.center,
+                                      fontFamily: GoogleFonts.playfairDisplay()
+                                          .fontFamily,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 8.h),
-                      child: SmoothPageIndicator(
-                          controller: PageController(), // PageController
-                          count: 1,
-                          effect: WormEffect(
-                              dotColor: AppColor.textColor,
-                              dotHeight: 8.h,
-                              dotWidth: 8.w,
-                              activeDotColor:
-                                  AppColor.beige), // your preferred effect
-                          onDotClicked: (index) {}),
+                    child: Container(
+                      height: 30.h,
+                      alignment: Alignment.center,
+                      child: Row(
+                          children: List.generate(
+                              2,
+                              (i) => CircleAvatar(
+                                    radius: 5.r,
+                                    backgroundColor: i == 1
+                                        ? AppColor.backGroundColor
+                                        : AppColor.lightGreenColor,
+                                  ))),
                     ),
                   ),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Transform.translate(
                         offset: Offset(15.w, -0.h),
-                        child: Image.asset('assets/images/sliderimage0.png')),
+                        child: Image.asset('assets/images/sliderImage0.png')),
                   ),
                 ],
               ),
@@ -192,44 +200,44 @@ class _HomeState extends State<Home> {
                 children: List.generate(
                   50,
                   (index) => Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: index % 3 == 0
-                                ? Image.network(
-                                    'https://m.maccosmetics.co.th/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg',
-                                  ).image
-                                : index % 2 == 0
-                                    ? Image.network(
-                                            'https://images.squarespace-cdn.com/content/v1/532aa86ae4b025b2a07ff10f/1541520174293-O4N3KOTR2JNVCCBAL2M6/Twisted-half-up-hairstyle-2018-long-wedding-hair-trends.jpg')
-                                        .image
-                                    : Image.network(
-                                            'https://sublimelife.in/cdn/shop/articles/Artboard_17.jpg?v=1684151976')
-                                        .image,
-                            fit: BoxFit.cover,
-                            opacity: 0.7),
-                        color: AppColor.lightGreenColor,
-                        // Color((Random().nextDouble() * 0xFFFFFF).toInt())
-                        //     .withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    alignment: Alignment.bottomLeft,
-                    padding: EdgeInsets.all(10.r),
-                    height: (150 + (index % 3 == 0 ? 250 : 150)).toDouble(),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      AppText(
-                        text: 'Salon name',
-                        fontSize: AppSize.subSecondaryTitleSize,
-                        color: AppColor.white,
-                      ),
-                      AppText(
-                        text: 'Advertising text text',
-                        fontSize: AppSize.subTitle,
-                        color: AppColor.white,
-                      ),
-                    ],)
-                  ),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: index % 3 == 0
+                                  ? Image.network(
+                                      'https://m.maccosmetics.co.th/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg',
+                                    ).image
+                                  : index % 2 == 0
+                                      ? Image.network(
+                                              'https://images.squarespace-cdn.com/content/v1/532aa86ae4b025b2a07ff10f/1541520174293-O4N3KOTR2JNVCCBAL2M6/Twisted-half-up-hairstyle-2018-long-wedding-hair-trends.jpg')
+                                          .image
+                                      : Image.network(
+                                              'https://sublimelife.in/cdn/shop/articles/Artboard_17.jpg?v=1684151976')
+                                          .image,
+                              fit: BoxFit.cover,
+                              opacity: 0.7),
+                          color: AppColor.lightGreenColor,
+                          // Color((Random().nextDouble() * 0xFFFFFF).toInt())
+                          //     .withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(10.r)),
+                      alignment: Alignment.bottomLeft,
+                      padding: EdgeInsets.all(10.r),
+                      height: (150 + (index % 3 == 0 ? 250 : 150)).toDouble(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            text: 'Salon name',
+                            fontSize: AppSize.subSecondaryTitleSize,
+                            color: AppColor.white,
+                          ),
+                          AppText(
+                            text: 'Advertising text text',
+                            fontSize: AppSize.subTitle,
+                            color: AppColor.white,
+                          ),
+                        ],
+                      )),
                 ),
               ),
             ),
