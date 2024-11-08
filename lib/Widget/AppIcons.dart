@@ -6,6 +6,7 @@ class AppIcons {
   static IconData documentationIcon = FontAwesomeIcons.fileCircleCheck;
   static IconData requestIcon = FontAwesomeIcons.boxArchive;
   static IconData manageIcons = FontAwesomeIcons.usersGear;
+  static IconData orders = FontAwesomeIcons.boxesPacking;
   static IconData appointments = Icons.add_task;
   static IconData couponsIcon = FontAwesomeIcons.tags;
   static IconData contractIcon = FontAwesomeIcons.fileContract;
@@ -41,11 +42,12 @@ class AppIcons {
   static IconData addCircle = FontAwesomeIcons.circlePlus;
   static IconData calendar = FontAwesomeIcons.calendar;
   static IconData deleteBasket = FontAwesomeIcons.trashCan;
-  static IconData like = FontAwesomeIcons.heart;
+  static IconData like = FontAwesomeIcons.solidHeart;
   static IconData send = Icons.send;
   static IconData x = FontAwesomeIcons.x;
   static IconData menuDots = FontAwesomeIcons.ellipsisVertical;
   static IconData chat = FontAwesomeIcons.comment;
+  static IconData chatSolid = FontAwesomeIcons.solidComment;
   static IconData email = FontAwesomeIcons.envelope;
   static IconData whatsapp = FontAwesomeIcons.whatsapp;
   static IconData warn = FontAwesomeIcons.triangleExclamation;

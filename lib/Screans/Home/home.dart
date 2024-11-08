@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
                       height: 150.spMin,
                       width: double.infinity,
                       child: ListView.builder(
-                          itemCount: 2,
+                          itemCount: 1,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (_, index) {
                             return Align(
@@ -161,27 +161,27 @@ class _HomeState extends State<Home> {
                           }),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 30.h,
-                      alignment: Alignment.center,
-                      child: Row(
-                          children: List.generate(
-                              2,
-                              (i) => CircleAvatar(
-                                    radius: 5.r,
-                                    backgroundColor: i == 1
-                                        ? AppColor.backGroundColor
-                                        : AppColor.lightGreenColor,
-                                  ))),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Container(
+                  //     height: 30.h,
+                  //     alignment: Alignment.center,
+                  //     child: Row(
+                  //         children: List.generate(
+                  //             2,
+                  //             (i) => CircleAvatar(
+                  //                   radius: 5.r,
+                  //                   backgroundColor: i == 1
+                  //                       ? AppColor.backGroundColor
+                  //                       : AppColor.lightGreenColor,
+                  //                 ))),
+                  //   ),
+                  // ),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Transform.translate(
                         offset: Offset(15.w, -0.h),
-                        child: Image.asset('assets/images/sliderImage0.png')),
+                        child: Image.asset('assets/images/sliderimage0.png')),
                   ),
                 ],
               ),

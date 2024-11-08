@@ -24,9 +24,9 @@ class AppMotionNavBar extends StatelessWidget {
       initialSelectedTab: AppLocalizations.of(context)!.home,
       labels: [
         AppLocalizations.of(context)!.appointments,
-        AppLocalizations.of(context)!.notification,
+        'notification',
         AppLocalizations.of(context)!.home,
-        AppLocalizations.of(context)!.chat,
+        'chat',
         AppLocalizations.of(context)!.profile
       ],
       icons: [
