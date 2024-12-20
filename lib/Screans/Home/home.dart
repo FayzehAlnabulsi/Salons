@@ -5,8 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masonry_list_view_grid/masonry_list_view_grid.dart';
 import 'package:motion_tab_bar/MotionTabBarController.dart';
+import 'package:salons/Screans/profile/SalonsPage.dart';
 import 'package:salons/Widget/AppBar.dart';
 import 'package:salons/Widget/AppColor.dart';
+import 'package:salons/Widget/AppRoutes.dart';
 import 'package:salons/Widget/AppSize.dart';
 import 'package:salons/Widget/AppText.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -139,7 +141,7 @@ class _HomeState extends State<Home> {
                                   padding: EdgeInsets.only(
                                       left: 120.w, bottom: 10.h),
                                   decoration: BoxDecoration(
-                                    color: AppColor.havanaPink,
+                                    color: AppColor.mainColor,
                                     borderRadius: BorderRadius.circular(10.r),
                                   ),
                                   child: SizedBox(
@@ -192,6 +194,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: GeneralWidget.height(context) * (50 / 5.8),
               child: MasonryListViewGrid(
+                isNeverScroll: true,
                 column: 2,
                 crossAxisGap: 3,
                 mainAxisGap: 3,
@@ -199,45 +202,50 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 children: List.generate(
                   50,
-                  (index) => Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: index % 3 == 0
-                                  ? Image.network(
-                                      'https://m.maccosmetics.co.th/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg',
-                                    ).image
-                                  : index % 2 == 0
-                                      ? Image.network(
-                                              'https://images.squarespace-cdn.com/content/v1/532aa86ae4b025b2a07ff10f/1541520174293-O4N3KOTR2JNVCCBAL2M6/Twisted-half-up-hairstyle-2018-long-wedding-hair-trends.jpg')
-                                          .image
-                                      : Image.network(
-                                              'https://sublimelife.in/cdn/shop/articles/Artboard_17.jpg?v=1684151976')
-                                          .image,
-                              fit: BoxFit.cover,
-                              opacity: 0.7),
-                          color: AppColor.lightGreenColor,
-                          // Color((Random().nextDouble() * 0xFFFFFF).toInt())
-                          //     .withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(10.r)),
-                      alignment: Alignment.bottomLeft,
-                      padding: EdgeInsets.all(10.r),
-                      height: (150 + (index % 3 == 0 ? 250 : 150)).toDouble(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            text: 'Salon name',
-                            fontSize: AppSize.subSecondaryTitleSize,
-                            color: AppColor.white,
-                          ),
-                          AppText(
-                            text: 'Advertising text text',
-                            fontSize: AppSize.subTitle,
-                            color: AppColor.white,
-                          ),
-                        ],
-                      )),
+                  (index) => InkWell(
+                    onTap: (){
+                      AppRoutes.pushTo(context, const SalonsPage());
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: index % 3 == 0
+                                    ? Image.network(
+                                        'https://m.maccosmetics.co.th/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg',
+                                      ).image
+                                    : index % 2 == 0
+                                        ? Image.network(
+                                                'https://images.squarespace-cdn.com/content/v1/532aa86ae4b025b2a07ff10f/1541520174293-O4N3KOTR2JNVCCBAL2M6/Twisted-half-up-hairstyle-2018-long-wedding-hair-trends.jpg')
+                                            .image
+                                        : Image.network(
+                                                'https://sublimelife.in/cdn/shop/articles/Artboard_17.jpg?v=1684151976')
+                                            .image,
+                                fit: BoxFit.cover,
+                                opacity: 0.7),
+                            color: AppColor.lightGreenColor,
+                            // Color((Random().nextDouble() * 0xFFFFFF).toInt())
+                            //     .withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(10.r)),
+                        alignment: Alignment.bottomLeft,
+                        padding: EdgeInsets.all(10.r),
+                        height: (150 + (index % 3 == 0 ? 250 : 150)).toDouble(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              text: 'Salon name',
+                              fontSize: AppSize.subSecondaryTitleSize,
+                              color: AppColor.white,
+                            ),
+                            AppText(
+                              text: 'Advertising text text',
+                              fontSize: AppSize.subTitle,
+                              color: AppColor.white,
+                            ),
+                          ],
+                        )),
+                  ),
                 ),
               ),
             ),

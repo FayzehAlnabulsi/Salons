@@ -73,4 +73,5 @@ class AppIcons {
   static IconData sort = FontAwesomeIcons.sort;
   static IconData city = FontAwesomeIcons.city;
   static IconData home = FontAwesomeIcons.house;
+  static IconData back = Icons.arrow_back_ios;
 }
